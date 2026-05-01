@@ -137,18 +137,18 @@ const dict = {
 
 const portfolioDataTranslations = {
   id: [
-    { id: 1, title: "AeroSuoh", desc: "Platform pariwisata pintar dan dasbor pemantauan geotermal masa depan untuk kawasan Suoh.", tags: ["Web Dev", "Dashboard"], demo: "https://aero-suoh.vercel.app/" },
-    { id: 2, title: "Sertifikat Generator", desc: "Aplikasi web berbasis Client-Side murni untuk membuat dan mengunduh ratusan sertifikat secara otomatis.", tags: ["Web Dev", "Auto-Generate"], demo: "https://sertifikat-generator-hima-informati.vercel.app/" },
-    { id: 3, title: "TeknoCom", desc: "Platform informasi berbasis web kompetisi International dibidang IT.", tags: ["Web Dev", "Informasi"], demo: "https://teknocom.teknokrat.ac.id/" },
-    { id: 4, title: "Cv-Builder", desc: "Web app ringan untuk membuat CV secara cepat dengan ekspor PDF.", tags: ["Web App", "Generator"], demo: "https://cv-builder-by-hy.vercel.app/" },
-    { id: 5, title: "Transparansi Skor", desc: "Platform digital pantau keaktifan anggota organisasi real-time.", tags: ["Web Dev", "Real-time"], demo: "https://app.himaif.web.id/" }
+    { id: 1, title: "AeroSuoh", desc: "Platform pariwisata pintar dan dasbor pemantauan geotermal masa depan untuk kawasan Suoh.", tags: ["Web Dev", "Dashboard"], demo: "https://aero-suoh.vercel.app/", image: "/aerosuoh.png" },
+    { id: 2, title: "Sertifikat Generator", desc: "Aplikasi web berbasis Client-Side murni untuk membuat dan mengunduh ratusan sertifikat secara otomatis.", tags: ["Web Dev", "Auto-Generate"], demo: "https://sertifikat-generator-hima-informati.vercel.app/", image: "/sertifikat-generator.png" },
+    { id: 3, title: "TeknoCom", desc: "Platform informasi berbasis web kompetisi International dibidang IT.", tags: ["Web Dev", "Informasi"], demo: "https://teknocom.teknokrat.ac.id/", image: "/teknocom.png" },
+    { id: 4, title: "Cv-Builder", desc: "Web app ringan untuk membuat CV secara cepat dengan ekspor PDF.", tags: ["Web App", "Generator"], demo: "https://cv-builder-by-hy.vercel.app/", image: "/cv-builder.png" },
+    { id: 5, title: "Transparansi Skor", desc: "Platform digital pantau keaktifan anggota organisasi real-time.", tags: ["Web Dev", "Real-time"], demo: "https://app.himaif.web.id/", image: "/transparansi-skor.png" }
   ],
   en: [
-    { id: 1, title: "AeroSuoh", desc: "Smart tourism platform and future geothermal monitoring dashboard for the Suoh area.", tags: ["Web Dev", "Dashboard"], demo: "https://aero-suoh.vercel.app/" },
-    { id: 2, title: "Certificate Generator", desc: "Pure Client-Side web application to automatically create and download hundreds of certificates.", tags: ["Web Dev", "Auto-Generate"], demo: "https://sertifikat-generator-hima-informati.vercel.app/" },
-    { id: 3, title: "TeknoCom", desc: "Web-based information platform for IT International competitions.", tags: ["Web Dev", "Information"], demo: "https://teknocom.teknokrat.ac.id/" },
-    { id: 4, title: "Cv-Builder", desc: "Lightweight web app to quickly create CVs with real-time preview and PDF export.", tags: ["Web App", "Generator"], demo: "https://cv-builder-by-hy.vercel.app/" },
-    { id: 5, title: "Score Transparency", desc: "Digital platform to monitor the activity and contribution of organization members in real-time.", tags: ["Web Dev", "Real-time"], demo: "https://app.himaif.web.id/" }
+    { id: 1, title: "AeroSuoh", desc: "Smart tourism platform and future geothermal monitoring dashboard for the Suoh area.", tags: ["Web Dev", "Dashboard"], demo: "https://aero-suoh.vercel.app/", image: "/aerosuoh.png" },
+    { id: 2, title: "Certificate Generator", desc: "Pure Client-Side web application to automatically create and download hundreds of certificates.", tags: ["Web Dev", "Auto-Generate"], demo: "https://sertifikat-generator-hima-informati.vercel.app/", image: "/sertifikat-generator.png" },
+    { id: 3, title: "TeknoCom", desc: "Web-based information platform for IT International competitions.", tags: ["Web Dev", "Information"], demo: "https://teknocom.teknokrat.ac.id/", image: "/teknocom.png" },
+    { id: 4, title: "Cv-Builder", desc: "Lightweight web app to quickly create CVs with real-time preview and PDF export.", tags: ["Web App", "Generator"], demo: "https://cv-builder-by-hy.vercel.app/", image: "/cv-builder.png" },
+    { id: 5, title: "Score Transparency", desc: "Digital platform to monitor the activity and contribution of organization members in real-time.", tags: ["Web Dev", "Real-time"], demo: "https://app.himaif.web.id/", image: "/transparansi-skor.png" }
   ]
 };
 
@@ -381,7 +381,19 @@ export default function Home() {
                   
                   {/* Image Area */}
                   <div className={`w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10`}>
-                    <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out" />
+                    {(item as any).image ? (
+                      <Image 
+                        src={(item as any).image} 
+                        alt={item.title} 
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                      />
+                    ) : (
+                      <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
+                    )}
+                    
+                    {/* Inner Shadow overlay to blend with dark card */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none"></div>
                   </div>
                   
                   <div className="p-8 flex flex-col flex-1 relative z-10">
@@ -513,17 +525,36 @@ export default function Home() {
 
       {/* F. Minimalist Dark Footer */}
       <footer className="py-12 bg-[#030b14] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+          {/* Logo Footer */}
           <Image 
             src="/logoBluegenc2.png" 
             alt="Bluegenc Logo" 
-            width={160} 
-            height={60} 
-            className="h-12 w-auto object-contain hover:scale-105 transition-all duration-300" 
+            width={200} 
+            height={80} 
+            className="h-20 md:h-28 w-auto object-contain hover:scale-[1.05] transition-all duration-300 origin-center md:origin-left" 
           />
-          <p className="text-slate-500 text-sm font-medium">
-            {t.footer.copyright}
-          </p>
+          
+          {/* Socials & Copyright */}
+          <div className="flex flex-col items-center md:items-end gap-4">
+            <a 
+              href="https://www.instagram.com/blueagencylampung/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <span className="text-sm font-medium">@blueagencylampung</span>
+            </a>
+            
+            <p className="text-slate-500 text-sm font-medium text-center md:text-right">
+              {t.footer.copyright}
+            </p>
+          </div>
         </div>
       </footer>
     </div>
