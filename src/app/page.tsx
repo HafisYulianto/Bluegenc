@@ -25,14 +25,14 @@ export default function Home() {
     <div className="min-h-screen font-sans text-slate-900 selection:bg-blue-200 selection:text-blue-900">
       {/* A. Sticky Header */}
       <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 border-b border-slate-200 transition-all duration-300 ease-in-out">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center cursor-pointer">
             <Image 
               src="/logoBluegenc2.png" 
               alt="Bluegenc Logo" 
-              width={240} 
-              height={60} 
-              className="h-12 w-auto object-contain" 
+              width={400} 
+              height={100} 
+              className="h-16 md:h-20 w-auto object-contain transform scale-125 md:scale-150 origin-left" 
               priority 
             />
           </Link>
