@@ -23,10 +23,10 @@ const dict = {
     nav: { about: "Tentang Kami", services: "Layanan", portfolio: "Portofolio", team: "Tim", workflow: "Cara Kerja", cta: "Mulai Proyek" },
     hero: {
       badge: "From Zero to Hero.",
-      title1: "Blue",
-      titleHighlight: "Agency",
+      title1: "Bluegenc-",
       title2: "",
-      desc: "Blue Agency adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi. Dari ideasi hingga implementasi, kami menghadirkan solusi teknologi mutakhir yang berorientasi pada skalabilitas dan pertumbuhan bisnis jangka panjang Anda.",
+      titleHighlight: "Blue Agency",
+      desc: "Blue Agency adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi.",
       cta1: "Konsultasi Gratis",
       cta2: "Eksplorasi Portofolio"
     },
@@ -634,8 +634,8 @@ export default function Home() {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full font-bold py-5 px-6 rounded-2xl transition-all duration-300 ease-out flex justify-center items-center gap-2 group mt-4 ${submitStatus === 'success' ? 'bg-green-500 hover:bg-green-400 text-white shadow-[0_0_20px_rgba(34,197,94,0.3)]' :
-                      isSubmitting ? 'bg-slate-700 text-slate-300 cursor-not-allowed' :
-                        'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
+                    isSubmitting ? 'bg-slate-700 text-slate-300 cursor-not-allowed' :
+                      'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
                     }`}
                 >
                   {isSubmitting ? 'Mengirim...' : submitStatus === 'success' ? 'Pesan Terkirim!' : t.contact.send}
@@ -681,51 +681,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* I. Minimalist Dark Footer */}
-      <footer className="py-12 bg-[#030b14] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* Logo Footer */}
-          <Image
-            src="/logoBluegenc2.png"
-            alt="Bluegenc Logo"
-            width={200}
-            height={80}
-            className="h-20 md:h-28 w-auto object-contain hover:scale-[1.05] transition-all duration-300 origin-center md:origin-left"
-          />
+      {/* I. Premium Enterprise Footer */}
+      <footer className="pt-20 pb-10 bg-[#020810] border-t border-white/5 relative overflow-hidden">
+        {/* Abstract Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-          {/* Socials & Copyright */}
-          <div className="flex flex-col items-center md:items-end gap-4">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
-                href="https://www.instagram.com/blueagencylampung/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-                <span className="text-sm font-medium">@blueagencylampung</span>
-              </a>
-
-              <a
-                href="https://wa.me/6282279485813"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-[#25D366] text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span className="text-sm font-medium">WhatsApp Kami</span>
-              </a>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            {/* Column 1: Brand */}
+            <div className="flex flex-col gap-6">
+              <Image
+                src="/logoBluegenc2.png"
+                alt="Bluegenc Logo"
+                width={200}
+                height={80}
+                className="h-16 w-auto object-contain origin-left"
+              />
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Mitra strategis Anda dalam transformasi digital. Merancang ekosistem teknologi masa depan untuk pertumbuhan bisnis yang tanpa batas.
+              </p>
+              <div className="flex items-center gap-4 mt-2">
+                <a
+                  href="mailto:contact@bluegenc.com"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-brand-500 hover:text-white transition-all duration-300 border border-white/10"
+                >
+                  <Mail className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://wa.me/6282279485813"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-[#25D366] hover:text-white transition-all duration-300 border border-white/10"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.61 3.38 17.14L2 22L6.98 20.64C8.48 21.49 10.19 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17.15 16.5C16.92 17.15 15.77 17.68 15.06 17.8C14.54 17.89 13.8 18 10.97 16.83C7.54 15.41 5.34 11.91 5.17 11.68C5 11.45 3.75 9.79 3.75 8.07C3.75 6.35 4.62 5.51 4.96 5.16C5.23 4.88 5.67 4.75 6.08 4.75C6.21 4.75 6.33 4.75 6.44 4.8C6.73 4.93 6.87 5.28 7.02 5.65C7.23 6.16 7.64 7.16 7.69 7.27C7.74 7.38 7.82 7.55 7.74 7.72C7.65 7.89 7.55 7.97 7.42 8.12C7.29 8.27 7.14 8.44 7.02 8.56C6.88 8.7 6.73 8.86 6.89 9.13C7.05 9.4 7.61 10.31 8.43 11.04C9.5 12 10.37 12.3 10.66 12.43C10.95 12.56 11.13 12.54 11.3 12.35C11.47 12.16 11.96 11.59 12.16 11.33C12.36 11.07 12.56 11.11 12.83 11.21C13.1 11.31 14.53 12.02 14.83 12.17C15.13 12.32 15.33 12.39 15.4 12.5C15.47 12.61 15.47 13.14 15.24 13.79V16.5Z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/blueagencylampung/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-red-500 hover:to-pink-500 hover:text-white transition-all duration-300 border border-white/10"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+              </div>
             </div>
 
-            <p className="text-slate-500 text-sm font-medium text-center md:text-right">
+            {/* Column 2: Navigation */}
+            <div>
+              <h4 className="text-white font-bold text-lg mb-6">Navigasi</h4>
+              <ul className="space-y-4">
+                <li><Link href="#tentang" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.about}</Link></li>
+                <li><Link href="#layanan" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.services}</Link></li>
+                <li><Link href="#portofolio" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.portfolio}</Link></li>
+                <li><Link href="#tim" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.team}</Link></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Services */}
+            <div>
+              <h4 className="text-white font-bold text-lg mb-6">Layanan Kami</h4>
+              <ul className="space-y-4">
+                <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s1_title}</li>
+                <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s2_title}</li>
+                <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s3_title}</li>
+                <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s4_title}</li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact info */}
+            <div>
+              <h4 className="text-white font-bold text-lg mb-6">Kontak</h4>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
+                  <span className="text-slate-400 text-sm leading-relaxed">
+                    Bandar Lampung, Lampung<br/>
+                    Indonesia
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Bottom Copyright Row */}
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-slate-500 text-sm font-medium">
               {t.footer.copyright}
             </p>
+            <div className="flex gap-6 text-sm text-slate-500">
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Syarat & Ketentuan</Link>
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Kebijakan Privasi</Link>
+            </div>
           </div>
         </div>
       </footer>
