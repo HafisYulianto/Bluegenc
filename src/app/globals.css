@@ -8,8 +8,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta);
+  --color-brand-50: #f0f7ff;
+  --color-brand-100: #e0effe;
+  --color-brand-200: #b9ddfe;
+  --color-brand-300: #7cc1fd;
+  --color-brand-400: #36a1fa;
+  --color-brand-500: #0b84eb;
+  --color-brand-600: #0d3a66; /* Main Logo Color */
+  --color-brand-700: #0a2d52; /* Logo Color Hover */
+  --color-brand-800: #08213e;
+  --color-brand-900: #051629;
 }
 
 @media (prefers-color-scheme: dark) {
