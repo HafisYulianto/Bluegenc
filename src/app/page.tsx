@@ -3,13 +3,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Globe, 
-  Database, 
-  Cpu, 
-  Smartphone, 
-  ExternalLink, 
-  Mail, 
+import {
+  Globe,
+  Database,
+  Cpu,
+  Smartphone,
+  ExternalLink,
+  Mail,
   MapPin,
   ArrowRight,
   Sparkles,
@@ -23,10 +23,10 @@ const dict = {
     nav: { about: "Tentang Kami", services: "Layanan", portfolio: "Portofolio", team: "Tim", workflow: "Cara Kerja", cta: "Mulai Proyek" },
     hero: {
       badge: "From Zero to Hero.",
-      title1: "Arsitektur ",
-      titleHighlight: "Perangkat Lunak",
-      title2: " Skala Enterprise.",
-      desc: "Kami merekayasa sistem kustom, antarmuka memukau, dan ekosistem IoT cerdas untuk mendorong batas inovasi bisnis Anda.",
+      title1: "Blue",
+      titleHighlight: "Agency",
+      title2: "",
+      desc: "Blue Agency adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi. Dari ideasi hingga implementasi, kami menghadirkan solusi teknologi mutakhir yang berorientasi pada skalabilitas dan pertumbuhan bisnis jangka panjang Anda.",
       cta1: "Konsultasi Gratis",
       cta2: "Eksplorasi Portofolio"
     },
@@ -37,6 +37,9 @@ const dict = {
       title2: " untuk Masa Depan.",
       desc1: "Bluegenc lahir dari sebuah visi besar di kawasan Pancoran, Jakarta Selatan. Berawal dari pemikiran inovatif seorang mahasiswa magang asal Lampung yang melihat celah dalam efisiensi operasional B2B.",
       desc2: "Kini, ide sederhana tersebut telah berkembang pesat menjadi arsitektur solusi digital berskala enterprise. Perjalanan kami adalah bukti nyata bahwa inovasi besar seringkali bermula dari keberanian untuk menantang status quo, menggabungkan semangat muda dengan keahlian teknis tingkat tinggi untuk mentransformasi ekosistem bisnis."
+    },
+    partners: {
+      title: "Telah Dipercaya Oleh Mitra Inovatif"
     },
     services: {
       title: "Ekosistem Layanan",
@@ -54,7 +57,7 @@ const dict = {
       s4_cta: "Minta Demo"
     },
     portfolio: {
-      title: "Karya & Studi Kasus",
+      title: "Project",
       visit: "Kunjungi Platform"
     },
     team: {
@@ -87,7 +90,7 @@ const dict = {
       title1: "Enterprise-Scale ",
       titleHighlight: "Software",
       title2: " Architecture.",
-      desc: "We engineer custom systems, stunning interfaces, and smart IoT ecosystems to push the boundaries of your business innovation.",
+      desc: "Blue Agency is your strategic partner in digital transformation. We design, develop, and manage enterprise-scale software, elegant interfaces, and fully integrated IoT ecosystems. From ideation to implementation, we deliver cutting-edge technology solutions tailored for scalability and the long-term growth of your business.",
       cta1: "Free Consultation",
       cta2: "Explore Portfolio"
     },
@@ -98,6 +101,9 @@ const dict = {
       title2: " for the Future.",
       desc1: "Bluegenc was born from a grand vision in the heart of Pancoran, South Jakarta. Originating as the innovative brainchild of an ambitious intern from Lampung who identified a critical gap in B2B operational efficiency.",
       desc2: "Today, this simple idea has rapidly evolved into an enterprise-scale digital solution architecture. Our journey is a testament to the fact that great innovation often begins with the courage to challenge the status quo, combining youthful drive with high-level technical expertise to transform business ecosystems."
+    },
+    partners: {
+      title: "Trusted By Innovative Partners"
     },
     services: {
       title: "Service Ecosystem",
@@ -115,7 +121,7 @@ const dict = {
       s4_cta: "Request Demo"
     },
     portfolio: {
-      title: "Work & Case Studies",
+      title: "Projects",
       visit: "Visit Platform"
     },
     team: {
@@ -175,6 +181,10 @@ const teamDataTranslations = {
   ]
 };
 
+const mockPartners = [
+  { id: 1, name: "HIMA INFORMATIKA - UTI", image: "/Logo Hima HD.png" }
+];
+
 export default function Home() {
   const [lang, setLang] = useState<'id' | 'en'>('id');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -192,15 +202,15 @@ export default function Home() {
     const formData = new FormData(e.currentTarget);
     // Kunci API Web3Forms
     formData.append("access_key", "f196ca30-1912-472f-bb8c-6ff6e13d02e4");
-    
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setSubmitStatus('success');
         (e.target as HTMLFormElement).reset();
@@ -226,22 +236,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-brand-500 selection:text-white bg-[#030b14] text-slate-100 overflow-x-hidden">
-      
+
       {/* A. Floating Glass Navigation & Independent Logo */}
       <div className="fixed top-0 w-full z-50 px-4 py-4 md:px-8 md:py-6 transition-all duration-300 pointer-events-none flex justify-between items-center">
-        
+
         {/* Independent Logo at Top Left */}
         <Link href="/" className="cursor-pointer pointer-events-auto shrink-0">
-          <Image 
-            src="/logoBluegenc2.png" 
-            alt="Bluegenc Logo" 
-            width={400} 
-            height={100} 
-            className="h-24 md:h-36 w-auto object-contain origin-left hover:scale-[1.05] transition-transform duration-300 ease-out" 
-            priority 
+          <Image
+            src="/logoBluegenc2.png"
+            alt="Bluegenc Logo"
+            width={400}
+            height={100}
+            className="h-24 md:h-36 w-auto object-contain origin-left hover:scale-[1.05] transition-transform duration-300 ease-out"
+            priority
           />
         </Link>
-        
+
         {/* Floating Nav Pill (Right Aligned) */}
         <header className="backdrop-blur-2xl bg-white/5 border border-white/10 rounded-full shadow-2xl px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
           <nav className="hidden lg:flex gap-8 items-center font-medium text-slate-300">
@@ -254,7 +264,7 @@ export default function Home() {
 
           <div className="flex items-center gap-3 lg:border-l lg:border-white/10 lg:pl-6">
             {/* Language Toggle */}
-            <button 
+            <button
               onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
               className="px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/10 text-xs md:text-sm font-bold text-white transition-colors"
             >
@@ -273,22 +283,28 @@ export default function Home() {
           {/* Neon Gradients */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-600/30 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
           <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/20 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
-          
+
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen"></div>
-          
+
           <div className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 mt-10">
             <div className="rounded-full bg-brand-900/50 backdrop-blur-md text-brand-300 border border-brand-500/30 px-6 py-2 text-sm font-semibold mb-8 shadow-[0_0_20px_rgba(11,132,235,0.15)] inline-flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-brand-400" /> {t.hero.badge}
             </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-white mb-8 leading-[1.1] max-w-4xl">
-              {t.hero.title1}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-200 to-white">{t.hero.titleHighlight}</span>{t.hero.title2}
+
+            <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-white mb-8 leading-[1.1] max-w-4xl text-center">
+              {t.hero.title1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-200 to-white">{t.hero.titleHighlight}</span>
+              {t.hero.title2 && (
+                <>
+                  <br />
+                  {t.hero.title2}
+                </>
+              )}
             </h1>
-            
+
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-14 font-light">
               {t.hero.desc}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-5 items-center justify-center w-full mb-20">
               <Link href="#kontak" className="w-full sm:w-auto bg-white text-brand-900 rounded-full px-8 py-4 font-bold transition-all duration-300 ease-out shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] hover:-translate-y-1 text-center flex items-center justify-center gap-2 group">
                 {t.hero.cta1} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -298,31 +314,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* 3D Dashboard Mockup Element */}
-            <div className="w-full max-w-5xl mx-auto relative perspective-[2000px] mt-10">
-              <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[#0a1526]/80 backdrop-blur-2xl rounded-t-3xl border-x border-t border-white/10 shadow-[0_-20px_80px_rgba(11,132,235,0.2)] transform rotateX-[15deg] translate-y-10 flex flex-col overflow-hidden transition-transform duration-1000 hover:rotateX-[5deg]">
-                 {/* fake browser header */}
-                 <div className="h-12 border-b border-white/10 flex items-center px-6 gap-2 bg-white/5">
-                   <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
-                   <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
-                   <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
-                   <div className="ml-4 h-5 w-48 bg-white/5 rounded-full"></div>
-                 </div>
-                 {/* fake content */}
-                 <div className="flex-1 p-8 grid grid-cols-3 gap-6 relative">
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#030b14] to-transparent z-10 translate-y-1/2"></div>
-                   <div className="col-span-2 space-y-4 relative z-0">
-                     <div className="h-8 bg-brand-500/20 rounded-lg w-1/3"></div>
-                     <div className="h-32 bg-white/5 rounded-xl border border-white/5"></div>
-                     <div className="h-32 bg-white/5 rounded-xl border border-white/5"></div>
-                   </div>
-                   <div className="space-y-4 relative z-0">
-                     <div className="h-24 bg-brand-500/10 rounded-xl border border-brand-400/20"></div>
-                     <div className="h-24 bg-brand-400/10 rounded-xl border border-brand-300/20"></div>
-                   </div>
-                 </div>
-              </div>
-            </div>
+
 
           </div>
         </section>
@@ -337,10 +329,10 @@ export default function Home() {
                 <Sparkles className="w-4 h-4" /> {t.about.badge}
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                {t.about.title1}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-white">{t.about.titleHighlight}</span><br/>{t.about.title2}
+                {t.about.title1}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-white">{t.about.titleHighlight}</span><br />{t.about.title2}
               </h2>
             </div>
-            
+
             {/* Right side narrative */}
             <div className="flex-1 bg-[#0a1526]/80 border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-xl relative overflow-hidden group shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:border-brand-500/40 transition-colors duration-500">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-600/20 rounded-full blur-[80px] group-hover:bg-brand-500/30 transition-colors duration-700 pointer-events-none"></div>
@@ -367,63 +359,63 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            
-            {/* Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
-              
-              {/* Large Main Feature (Bento 1) */}
-              <div className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-[#0d1e36] to-[#050e1a] p-10 md:p-14 rounded-[2.5rem] border border-white/10 relative overflow-hidden group hover:border-brand-500/50 transition-colors duration-500">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-600/20 rounded-full blur-[100px] group-hover:bg-brand-500/30 transition-colors duration-700"></div>
+
+            {/* Compact Bento Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+
+              {/* Feature 1 */}
+              <div className="lg:row-span-2 bg-gradient-to-br from-[#0d1e36] to-[#050e1a] p-8 md:p-10 rounded-[2rem] border border-white/10 relative overflow-hidden group hover:border-brand-500/50 transition-colors duration-500">
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-600/20 rounded-full blur-[80px] group-hover:bg-brand-500/30 transition-colors duration-700 pointer-events-none"></div>
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    <div className="w-16 h-16 bg-brand-500/20 border border-brand-400/30 text-brand-400 rounded-2xl flex items-center justify-center mb-8">
-                      <LayoutDashboard className="w-8 h-8" />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-brand-500/20 border border-brand-400/30 text-brand-400 rounded-2xl flex items-center justify-center mb-6">
+                      <LayoutDashboard className="w-6 h-6 md:w-7 md:h-7" />
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.services.s1_title}</h3>
-                    <p className="text-slate-400 text-lg leading-relaxed max-w-md">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{t.services.s1_title}</h3>
+                    <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-sm">
                       {t.services.s1_desc}
                     </p>
                   </div>
-                  <div className="mt-8 flex gap-3">
-                    <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm">{t.services.s1_tag1}</span>
-                    <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm">{t.services.s1_tag2}</span>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium">{t.services.s1_tag1}</span>
+                    <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium">{t.services.s1_tag2}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Bento 2 */}
-              <div className="bg-[#0d1e36]/50 p-8 rounded-[2.5rem] border border-white/10 group hover:border-brand-500/50 transition-colors duration-500 flex flex-col justify-between">
+              {/* Feature 2 */}
+              <div className="bg-[#0d1e36]/50 p-8 md:p-10 rounded-[2rem] border border-white/10 group hover:border-brand-500/50 transition-colors duration-500 flex flex-col justify-between">
                 <div>
-                  <Globe className="w-10 h-10 text-brand-400 mb-6" />
-                  <h3 className="text-2xl font-bold text-white mb-3">{t.services.s2_title}</h3>
-                  <p className="text-slate-400 text-sm">{t.services.s2_desc}</p>
+                  <Globe className="w-8 h-8 md:w-10 md:h-10 text-brand-400 mb-5" />
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{t.services.s2_title}</h3>
+                  <p className="text-slate-400 text-sm md:text-base">{t.services.s2_desc}</p>
                 </div>
               </div>
 
-              {/* Bento 3 */}
-              <div className="bg-gradient-to-br from-brand-600 to-brand-900 p-8 rounded-[2.5rem] border border-brand-500/50 group hover:border-brand-400 transition-colors duration-500 flex flex-col justify-between overflow-hidden relative">
-                <div className="absolute -right-4 -top-4 opacity-20">
-                  <Cpu className="w-40 h-40" />
+              {/* Feature 3 */}
+              <div className="bg-gradient-to-br from-brand-600 to-brand-900 p-8 md:p-10 rounded-[2rem] border border-brand-500/50 group hover:border-brand-400 transition-colors duration-500 flex flex-col justify-between overflow-hidden relative">
+                <div className="absolute -right-4 -top-4 opacity-10 pointer-events-none">
+                  <Cpu className="w-32 h-32 md:w-40 md:h-40" />
                 </div>
                 <div className="relative z-10">
-                  <Zap className="w-10 h-10 text-brand-200 mb-6" />
-                  <h3 className="text-2xl font-bold text-white mb-3">{t.services.s3_title}</h3>
-                  <p className="text-brand-100/70 text-sm">{t.services.s3_desc}</p>
+                  <Zap className="w-8 h-8 md:w-10 md:h-10 text-brand-200 mb-5" />
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{t.services.s3_title}</h3>
+                  <p className="text-brand-100/70 text-sm md:text-base">{t.services.s3_desc}</p>
                 </div>
               </div>
 
-              {/* Bento 4 (Wide Horizontal) */}
-              <div className="md:col-span-3 bg-[#0d1e36]/50 p-8 md:p-10 rounded-[2.5rem] border border-white/10 group hover:border-brand-500/50 transition-colors duration-500 flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-3xl flex items-center justify-center shrink-0">
-                    <Smartphone className="w-10 h-10 text-brand-400" />
+              {/* Feature 4 (Wide Horizontal) */}
+              <div className="lg:col-span-2 bg-[#0d1e36]/50 p-6 md:p-8 rounded-[2rem] border border-white/10 group hover:border-brand-500/50 transition-colors duration-500 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-5 w-full sm:w-auto">
+                  <div className="w-14 h-14 md:w-16 md:h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                    <Smartphone className="w-7 h-7 md:w-8 md:h-8 text-brand-400" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{t.services.s4_title}</h3>
-                    <p className="text-slate-400 max-w-xl">{t.services.s4_desc}</p>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">{t.services.s4_title}</h3>
+                    <p className="text-slate-400 text-sm md:text-base max-w-lg">{t.services.s4_desc}</p>
                   </div>
                 </div>
-                <Link href="#kontak" className="shrink-0 px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:scale-105 transition-transform">
+                <Link href="#kontak" className="w-full sm:w-auto shrink-0 px-6 py-3 bg-white text-slate-900 rounded-full font-bold hover:scale-105 transition-transform text-center text-sm md:text-base">
                   {t.services.s4_cta}
                 </Link>
               </div>
@@ -441,49 +433,50 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {/* Slider Container */}
+            <div className="flex overflow-x-auto gap-4 md:gap-6 pb-12 pt-4 px-4 -mx-4 snap-x snap-mandatory hide-scrollbar">
               {portfolios.map((item, index) => (
-                <article key={item.id} className="group relative rounded-[2.5rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
+                <article key={item.id} className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 snap-center group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
                   {/* Glowing Edge on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0"></div>
-                  
+
                   {/* Image Area */}
                   <div className={`w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10`}>
                     {(item as any).image ? (
-                      <Image 
-                        src={(item as any).image} 
-                        alt={item.title} 
+                      <Image
+                        src={(item as any).image}
+                        alt={item.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                       />
                     ) : (
                       <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
                     )}
-                    
+
                     {/* Inner Shadow overlay to blend with dark card */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none"></div>
                   </div>
-                  
-                  <div className="p-8 flex flex-col flex-1 relative z-10">
-                    <div className="flex flex-wrap gap-2 mb-6">
+
+                  <div className="p-6 md:p-7 flex flex-col flex-1 relative z-10">
+                    <div className="flex flex-wrap gap-2 mb-5">
                       {item.tags.map((tag, i) => (
-                        <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-xs px-3 py-1.5 rounded-lg font-semibold tracking-wide">
+                        <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-[10px] md:text-xs px-2.5 py-1 rounded-lg font-semibold tracking-wide">
                           {tag}
                         </span>
                       ))}
                     </div>
-                    
-                    <h3 className="font-bold text-2xl text-white mb-3">
+
+                    <h3 className="font-bold text-xl md:text-2xl text-white mb-2">
                       {item.title}
                     </h3>
-                    
-                    <p className="text-sm text-slate-400 leading-relaxed mb-8 flex-1">
+
+                    <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">
                       {item.desc}
                     </p>
-                    
-                    <Link 
-                      href={item.demo} 
-                      target="_blank" 
+
+                    <Link
+                      href={item.demo}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-white hover:text-brand-300 font-bold text-sm flex items-center gap-2 transition-colors duration-300 w-fit"
                     >
@@ -511,7 +504,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
               {teams.map((member) => (
                 <div key={member.id} className="group relative rounded-3xl overflow-hidden bg-[#0d1e36] border border-white/5 hover:border-brand-500/50 transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(11,132,235,0.2)]">
-                  
+
                   {/* Decorative Tech Corners */}
                   <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/20 group-hover:border-brand-400 transition-colors duration-500 z-20"></div>
                   <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/20 group-hover:border-brand-400 transition-colors duration-500 z-20"></div>
@@ -520,16 +513,16 @@ export default function Home() {
                   <div className="relative aspect-[4/5] w-full overflow-hidden">
                     {/* Blue Multiply Overlay (Disappears on hover) */}
                     <div className="absolute inset-0 bg-brand-900/40 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
-                    <Image 
-                      src={member.image} 
-                      alt={member.name} 
+                    <Image
+                      src={member.image}
+                      alt={member.name}
                       fill
                       className="object-cover object-center grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 ease-out"
                     />
                     {/* Bottom Gradient Fade */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-[#0a1526]/80 to-transparent opacity-90 z-10 h-full pointer-events-none"></div>
                   </div>
-                  
+
                   {/* Info Panel */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 flex flex-col justify-end h-full pointer-events-none">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -538,7 +531,7 @@ export default function Home() {
                       </div>
                       <h3 className="text-2xl font-extrabold text-white mb-1 drop-shadow-lg">{member.name}</h3>
                       <p className="text-brand-400 font-medium text-sm md:text-base tracking-wide uppercase">{member.role}</p>
-                      
+
                       {/* Decorative Glowing Line */}
                       <div className="w-0 h-1 bg-gradient-to-r from-brand-400 to-transparent mt-5 group-hover:w-full transition-all duration-700 ease-out"></div>
                     </div>
@@ -576,15 +569,15 @@ export default function Home() {
 
         {/* F. Contact Section - Massive Gradient Glass Card */}
         <section id="kontak" className="bg-[#030b14] relative py-32 px-4 md:px-8">
-          
+
           <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#0d1e36] to-[#0a1526] rounded-[3rem] shadow-[0_30px_100px_-15px_rgba(11,132,235,0.2)] overflow-hidden flex flex-col lg:flex-row relative z-20 border border-white/10">
-            
+
             {/* Left side text */}
             <div className="flex-1 p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05] mix-blend-screen pointer-events-none"></div>
-              
+
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8 relative z-10 leading-tight text-white">
-                {t.contact.title1}<br/><span className="text-brand-400">{t.contact.titleHighlight}</span>
+                {t.contact.title1}<br /><span className="text-brand-400">{t.contact.titleHighlight}</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-14 relative z-10 text-lg">
                 {t.contact.desc}
@@ -608,18 +601,18 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-white mb-8">{t.contact.formTitle}</h3>
               <form onSubmit={handleSendMessage} className="space-y-5">
                 <div>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     required
                     placeholder={t.contact.name}
                     className="w-full px-6 py-4 rounded-2xl border border-white/10 bg-white/5 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-white font-medium placeholder-slate-500"
                   />
                 </div>
-                
+
                 <div>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     required
                     placeholder={t.contact.email}
@@ -628,7 +621,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <textarea 
+                  <textarea
                     rows={4}
                     name="message"
                     required
@@ -637,16 +630,15 @@ export default function Home() {
                   ></textarea>
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-bold py-5 px-6 rounded-2xl transition-all duration-300 ease-out flex justify-center items-center gap-2 group mt-4 ${
-                    submitStatus === 'success' ? 'bg-green-500 hover:bg-green-400 text-white shadow-[0_0_20px_rgba(34,197,94,0.3)]' : 
-                    isSubmitting ? 'bg-slate-700 text-slate-300 cursor-not-allowed' : 
-                    'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
-                  }`}
+                  className={`w-full font-bold py-5 px-6 rounded-2xl transition-all duration-300 ease-out flex justify-center items-center gap-2 group mt-4 ${submitStatus === 'success' ? 'bg-green-500 hover:bg-green-400 text-white shadow-[0_0_20px_rgba(34,197,94,0.3)]' :
+                      isSubmitting ? 'bg-slate-700 text-slate-300 cursor-not-allowed' :
+                        'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
+                    }`}
                 >
-                  {isSubmitting ? 'Mengirim...' : submitStatus === 'success' ? 'Pesan Terkirim!' : t.contact.send} 
+                  {isSubmitting ? 'Mengirim...' : submitStatus === 'success' ? 'Pesan Terkirim!' : t.contact.send}
                   {!isSubmitting && submitStatus !== 'success' && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </form>
@@ -656,34 +648,81 @@ export default function Home() {
         </section>
       </main>
 
-      {/* F. Minimalist Dark Footer */}
+      {/* H. Partners Section - Trusted By */}
+      <section className="py-20 md:py-32 border-t border-white/5 bg-[#0a1526] relative flex flex-col items-center px-4">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-16">
+            {t.partners.title}
+          </h2>
+
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+            {mockPartners.map((partner) => (
+              <div key={partner.id} className="group flex flex-col items-center justify-center p-8 rounded-3xl bg-[#030b14] border border-white/5 hover:border-brand-500/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(11,132,235,0.15)] w-64 h-48 relative overflow-hidden">
+
+                {/* Image Placeholder or Logo */}
+                <div className="relative w-full h-20 mb-4 opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                {/* Name */}
+                <h3 className="font-bold text-white text-center text-sm md:text-base group-hover:text-brand-300 transition-colors duration-300">
+                  {partner.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* I. Minimalist Dark Footer */}
       <footer className="py-12 bg-[#030b14] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Logo Footer */}
-          <Image 
-            src="/logoBluegenc2.png" 
-            alt="Bluegenc Logo" 
-            width={200} 
-            height={80} 
-            className="h-20 md:h-28 w-auto object-contain hover:scale-[1.05] transition-all duration-300 origin-center md:origin-left" 
+          <Image
+            src="/logoBluegenc2.png"
+            alt="Bluegenc Logo"
+            width={200}
+            height={80}
+            className="h-20 md:h-28 w-auto object-contain hover:scale-[1.05] transition-all duration-300 origin-center md:origin-left"
           />
-          
+
           {/* Socials & Copyright */}
           <div className="flex flex-col items-center md:items-end gap-4">
-            <a 
-              href="https://www.instagram.com/blueagencylampung/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-              </svg>
-              <span className="text-sm font-medium">@blueagencylampung</span>
-            </a>
-            
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://www.instagram.com/blueagencylampung/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-gradient-to-r hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+                <span className="text-sm font-medium">@blueagencylampung</span>
+              </a>
+
+              <a
+                href="https://wa.me/6282279485813"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 hover:bg-[#25D366] text-slate-400 hover:text-white transition-all duration-300 border border-white/10 hover:border-transparent group"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 group-hover:scale-110 transition-transform">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span className="text-sm font-medium">WhatsApp Kami</span>
+              </a>
+            </div>
+
             <p className="text-slate-500 text-sm font-medium text-center md:text-right">
               {t.footer.copyright}
             </p>

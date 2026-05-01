@@ -19,6 +19,23 @@
   --color-brand-700: #0a2d52; /* Logo Color Hover */
   --color-brand-800: #08213e;
   --color-brand-900: #051629;
+
+  --animate-scroll: scroll 35s linear infinite;
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
