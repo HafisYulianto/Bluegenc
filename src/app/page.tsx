@@ -20,7 +20,7 @@ import {
 
 const dict = {
   id: {
-    nav: { about: "Tentang Kami", services: "Layanan", portfolio: "Portofolio", workflow: "Cara Kerja", cta: "Mulai Proyek" },
+    nav: { about: "Tentang Kami", services: "Layanan", portfolio: "Portofolio", team: "Tim", workflow: "Cara Kerja", cta: "Mulai Proyek" },
     hero: {
       badge: "From Zero to Hero.",
       title1: "Arsitektur ",
@@ -57,6 +57,10 @@ const dict = {
       title: "Karya & Studi Kasus",
       visit: "Kunjungi Platform"
     },
+    team: {
+      title: "Tim Eksekutif",
+      desc: "Inovator di balik arsitektur digital Bluegenc."
+    },
     workflow: {
       title: "Metodologi Eksekusi",
       steps: ["Riset & Audit", "PRD Dasar", "Prototyping Cepat", "Pengembangan", "Peluncuran"]
@@ -77,7 +81,7 @@ const dict = {
     }
   },
   en: {
-    nav: { about: "About Us", services: "Services", portfolio: "Portfolio", workflow: "Workflow", cta: "Start Project" },
+    nav: { about: "About Us", services: "Services", portfolio: "Portfolio", team: "Team", workflow: "Workflow", cta: "Start Project" },
     hero: {
       badge: "From Zero to Hero.",
       title1: "Enterprise-Scale ",
@@ -113,6 +117,10 @@ const dict = {
     portfolio: {
       title: "Work & Case Studies",
       visit: "Visit Platform"
+    },
+    team: {
+      title: "Executive Team",
+      desc: "The innovators behind Bluegenc's digital architecture."
     },
     workflow: {
       title: "Execution Methodology",
@@ -152,6 +160,21 @@ const portfolioDataTranslations = {
   ]
 };
 
+const teamDataTranslations = {
+  id: [
+    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/team-hafis.JPG" },
+    { id: 2, name: "Anggota Tim 2", role: "UI/UX Designer", image: "/team-hafis.JPG" },
+    { id: 3, name: "Anggota Tim 3", role: "Backend Engineer", image: "/team-hafis.JPG" },
+    { id: 4, name: "Anggota Tim 4", role: "IoT Specialist", image: "/team-hafis.JPG" }
+  ],
+  en: [
+    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/team-hafis.JPG" },
+    { id: 2, name: "Team Member 2", role: "UI/UX Designer", image: "/team-hafis.JPG" },
+    { id: 3, name: "Team Member 3", role: "Backend Engineer", image: "/team-hafis.JPG" },
+    { id: 4, name: "Team Member 4", role: "IoT Specialist", image: "/team-hafis.JPG" }
+  ]
+};
+
 export default function Home() {
   const [lang, setLang] = useState<'id' | 'en'>('id');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -159,6 +182,7 @@ export default function Home() {
 
   const t = dict[lang];
   const portfolios = portfolioDataTranslations[lang];
+  const teams = teamDataTranslations[lang];
 
   const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -224,6 +248,7 @@ export default function Home() {
             <Link href="#tentang" className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
             <Link href="#layanan" className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
             <Link href="#portofolio" className="hover:text-white transition-colors duration-300">{t.nav.portfolio}</Link>
+            <Link href="#tim" className="hover:text-white transition-colors duration-300">{t.nav.team}</Link>
             <Link href="#cara-kerja" className="hover:text-white transition-colors duration-300">{t.nav.workflow}</Link>
           </nav>
 
@@ -471,8 +496,61 @@ export default function Home() {
           </div>
         </section>
 
-        {/* E. Workflow Section - Interactive Stepper Style */}
-        <section id="cara-kerja" className="relative py-32 px-4 md:px-8 bg-[#0a1526]">
+        {/* E. Team Section */}
+        <section id="tim" className="py-32 px-4 md:px-8 bg-[#0a1526] relative border-t border-white/5">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                {t.team.title}
+              </h2>
+              <p className="text-lg text-slate-400">
+                {t.team.desc}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
+              {teams.map((member) => (
+                <div key={member.id} className="group relative rounded-3xl overflow-hidden bg-[#0d1e36] border border-white/5 hover:border-brand-500/50 transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(11,132,235,0.2)]">
+                  
+                  {/* Decorative Tech Corners */}
+                  <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/20 group-hover:border-brand-400 transition-colors duration-500 z-20"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white/20 group-hover:border-brand-400 transition-colors duration-500 z-20"></div>
+
+                  {/* Photo area */}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                    {/* Blue Multiply Overlay (Disappears on hover) */}
+                    <div className="absolute inset-0 bg-brand-900/40 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+                    <Image 
+                      src={member.image} 
+                      alt={member.name} 
+                      fill
+                      className="object-cover object-center grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 ease-out"
+                    />
+                    {/* Bottom Gradient Fade */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-[#0a1526]/80 to-transparent opacity-90 z-10 h-full pointer-events-none"></div>
+                  </div>
+                  
+                  {/* Info Panel */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 flex flex-col justify-end h-full pointer-events-none">
+                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-xs font-bold mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <Zap className="w-3 h-3" /> Core Team
+                      </div>
+                      <h3 className="text-2xl font-extrabold text-white mb-1 drop-shadow-lg">{member.name}</h3>
+                      <p className="text-brand-400 font-medium text-sm md:text-base tracking-wide uppercase">{member.role}</p>
+                      
+                      {/* Decorative Glowing Line */}
+                      <div className="w-0 h-1 bg-gradient-to-r from-brand-400 to-transparent mt-5 group-hover:w-full transition-all duration-700 ease-out"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* F. Workflow Section - Interactive Stepper Style */}
+        <section id="cara-kerja" className="relative py-32 px-4 md:px-8 bg-[#030b14] border-t border-white/5">
           <div className="max-w-7xl mx-auto relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white text-center mb-20">
               {t.workflow.title}
