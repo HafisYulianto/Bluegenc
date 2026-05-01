@@ -154,8 +154,51 @@ const portfolioDataTranslations = {
 
 export default function Home() {
   const [lang, setLang] = useState<'id' | 'en'>('id');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const t = dict[lang];
   const portfolios = portfolioDataTranslations[lang];
+
+  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const formData = new FormData(e.currentTarget);
+    // Kunci API Web3Forms
+    formData.append("access_key", "f196ca30-1912-472f-bb8c-6ff6e13d02e4");
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setSubmitStatus('success');
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setSubmitStatus('idle'), 5000); // Reset status setelah 5 detik
+      } else {
+        console.error("Error", data);
+        setSubmitStatus('error');
+        // Fallback sementara jika API key belum ada agar pesan tetap masuk ke email client lokal
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject Details:\n${message}`);
+        window.location.href = `mailto:blueagencylampung@gmail.com?subject=${subject}&body=${body}`;
+      }
+    } catch (error) {
+      console.error(error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen font-sans selection:bg-brand-500 selection:text-white bg-[#030b14] text-slate-100 overflow-x-hidden">
@@ -485,10 +528,12 @@ export default function Home() {
             {/* Right side form (Glassy Dark) */}
             <div className="flex-1 bg-white/5 backdrop-blur-xl p-10 md:p-16 relative border-l border-white/10">
               <h3 className="text-2xl font-bold text-white mb-8">{t.contact.formTitle}</h3>
-              <form className="space-y-5">
+              <form onSubmit={handleSendMessage} className="space-y-5">
                 <div>
                   <input 
                     type="text" 
+                    name="name"
+                    required
                     placeholder={t.contact.name}
                     className="w-full px-6 py-4 rounded-2xl border border-white/10 bg-white/5 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-white font-medium placeholder-slate-500"
                   />
@@ -497,6 +542,8 @@ export default function Home() {
                 <div>
                   <input 
                     type="email" 
+                    name="email"
+                    required
                     placeholder={t.contact.email}
                     className="w-full px-6 py-4 rounded-2xl border border-white/10 bg-white/5 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-white font-medium placeholder-slate-500"
                   />
@@ -505,16 +552,24 @@ export default function Home() {
                 <div>
                   <textarea 
                     rows={4}
+                    name="message"
+                    required
                     placeholder={t.contact.message}
                     className="w-full px-6 py-4 rounded-2xl border border-white/10 bg-white/5 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-white font-medium placeholder-slate-500 resize-none"
                   ></textarea>
                 </div>
 
                 <button 
-                  type="button"
-                  className="w-full bg-brand-500 hover:bg-brand-400 text-white font-bold py-5 px-6 rounded-2xl transition-all duration-300 ease-out shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1 mt-4 flex justify-center items-center gap-2 group"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full font-bold py-5 px-6 rounded-2xl transition-all duration-300 ease-out flex justify-center items-center gap-2 group mt-4 ${
+                    submitStatus === 'success' ? 'bg-green-500 hover:bg-green-400 text-white shadow-[0_0_20px_rgba(34,197,94,0.3)]' : 
+                    isSubmitting ? 'bg-slate-700 text-slate-300 cursor-not-allowed' : 
+                    'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
+                  }`}
                 >
-                  {t.contact.send} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {isSubmitting ? 'Mengirim...' : submitStatus === 'success' ? 'Pesan Terkirim!' : t.contact.send} 
+                  {!isSubmitting && submitStatus !== 'success' && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </form>
             </div>
