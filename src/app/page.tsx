@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import {
   Globe,
   Database,
@@ -15,7 +16,9 @@ import {
   Sparkles,
   Zap,
   Code2,
-  LayoutDashboard
+  LayoutDashboard,
+  Menu,
+  X
 } from 'lucide-react';
 
 const dict = {
@@ -189,10 +192,13 @@ export default function Home() {
   const [lang, setLang] = useState<'id' | 'en'>('id');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const t = dict[lang];
   const portfolios = portfolioDataTranslations[lang];
   const teams = teamDataTranslations[lang];
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -270,12 +276,36 @@ export default function Home() {
             >
               {lang.toUpperCase()}
             </button>
-            <Link href="#kontak" className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white rounded-full px-5 md:px-7 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 ease-in-out shadow-[0_0_20px_rgba(11,132,235,0.4)] hover:shadow-[0_0_30px_rgba(11,132,235,0.6)]">
+            <Link href="#kontak" className="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white rounded-full px-5 md:px-7 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 ease-in-out shadow-[0_0_20px_rgba(11,132,235,0.4)] hover:shadow-[0_0_30px_rgba(11,132,235,0.6)]">
               {t.nav.cta}
             </Link>
+            {/* Mobile Menu Toggle Button */}
+            <button 
+              className="lg:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle Mobile Menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </header>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#030b14]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
+          <nav className="flex flex-col gap-8 items-center text-xl font-medium text-slate-300">
+            <Link href="#tentang" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
+            <Link href="#layanan" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
+            <Link href="#portofolio" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.portfolio}</Link>
+            <Link href="#tim" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.team}</Link>
+            <Link href="#cara-kerja" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.workflow}</Link>
+            <Link href="#kontak" onClick={toggleMobileMenu} className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white rounded-full px-8 py-3 text-sm font-bold mt-4 shadow-[0_0_20px_rgba(11,132,235,0.4)]">
+              {t.nav.cta}
+            </Link>
+          </nav>
+        </div>
+      )}
 
       <main>
         {/* B. Hero Section - 3D Dashboard Mockup & Neon Glows */}
@@ -286,7 +316,12 @@ export default function Home() {
 
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen"></div>
 
-          <div className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 mt-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 mt-10"
+          >
             <div className="rounded-full bg-brand-900/50 backdrop-blur-md text-brand-300 border border-brand-500/30 px-6 py-2 text-sm font-semibold mb-8 shadow-[0_0_20px_rgba(11,132,235,0.15)] inline-flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-brand-400" /> {t.hero.badge}
             </div>
@@ -313,16 +348,19 @@ export default function Home() {
                 {t.hero.cta2}
               </Link>
             </div>
-
-
-
-          </div>
+          </motion.div>
         </section>
 
         {/* B2. About Section - The Origin Story */}
         <section id="tentang" className="relative py-24 px-4 md:px-8 bg-[#030b14]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen"></div>
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10 border-t border-white/5 pt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10 border-t border-white/5 pt-20"
+          >
             {/* Left side text */}
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-500/30 bg-brand-900/50 text-brand-300 text-sm font-semibold mb-6 shadow-[0_0_15px_rgba(11,132,235,0.15)]">
@@ -343,12 +381,18 @@ export default function Home() {
                 {t.about.desc2}
               </p>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* C. Services Section - Bento Box Grid */}
         <section id="layanan" className="relative py-32 px-4 md:px-8 bg-[#0a1526] border-t border-white/5">
-          <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
+          >
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div className="max-w-2xl">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
@@ -421,12 +465,18 @@ export default function Home() {
               </div>
 
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* D. Featured Portfolio Section - Sleek Dark Gallery */}
         <section id="portofolio" className="py-32 px-4 md:px-8 bg-[#030b14] relative border-y border-white/5">
-          <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
+          >
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
                 {t.portfolio.title}
@@ -486,12 +536,18 @@ export default function Home() {
                 </article>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* E. Team Section */}
         <section id="tim" className="py-32 px-4 md:px-8 bg-[#0a1526] relative border-t border-white/5">
-          <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto"
+          >
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
                 {t.team.title}
@@ -539,12 +595,18 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* F. Workflow Section - Interactive Stepper Style */}
         <section id="cara-kerja" className="relative py-32 px-4 md:px-8 bg-[#030b14] border-t border-white/5">
-          <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-7xl mx-auto relative z-10"
+          >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white text-center mb-20">
               {t.workflow.title}
             </h2>
@@ -564,13 +626,19 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* F. Contact Section - Massive Gradient Glass Card */}
         <section id="kontak" className="bg-[#030b14] relative py-32 px-4 md:px-8">
 
-          <div className="max-w-6xl mx-auto bg-gradient-to-br from-[#0d1e36] to-[#0a1526] rounded-[3rem] shadow-[0_30px_100px_-15px_rgba(11,132,235,0.2)] overflow-hidden flex flex-col lg:flex-row relative z-20 border border-white/10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto bg-gradient-to-br from-[#0d1e36] to-[#0a1526] rounded-[3rem] shadow-[0_30px_100px_-15px_rgba(11,132,235,0.2)] overflow-hidden flex flex-col lg:flex-row relative z-20 border border-white/10"
+          >
 
             {/* Left side text */}
             <div className="flex-1 p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
@@ -644,7 +712,7 @@ export default function Home() {
               </form>
             </div>
 
-          </div>
+          </motion.div>
         </section>
       </main>
 
@@ -652,7 +720,13 @@ export default function Home() {
       <section className="py-20 md:py-32 border-t border-white/5 bg-[#0a1526] relative flex flex-col items-center px-4">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto w-full relative z-10 text-center"
+        >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-16">
             {t.partners.title}
           </h2>
@@ -678,7 +752,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* I. Premium Enterprise Footer */}
