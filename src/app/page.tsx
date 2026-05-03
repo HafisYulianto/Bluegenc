@@ -171,16 +171,16 @@ const portfolioDataTranslations = {
 
 const teamDataTranslations = {
   id: [
-    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/team-hafis.JPG" },
-    { id: 2, name: "Anggota Tim 2", role: "UI/UX Designer", image: "/team-hafis.JPG" },
-    { id: 3, name: "Anggota Tim 3", role: "Backend Engineer", image: "/team-hafis.JPG" },
-    { id: 4, name: "Anggota Tim 4", role: "IoT Specialist", image: "/team-hafis.JPG" }
+    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/hafis.JPG" },
+    { id: 2, name: "Anggota Tim 2", role: "UI/UX Designer", image: "/hafis.JPG" },
+    { id: 3, name: "Anggota Tim 3", role: "Backend Engineer", image: "/hafis.JPG" },
+    { id: 4, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
   ],
   en: [
-    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/team-hafis.JPG" },
-    { id: 2, name: "Team Member 2", role: "UI/UX Designer", image: "/team-hafis.JPG" },
-    { id: 3, name: "Team Member 3", role: "Backend Engineer", image: "/team-hafis.JPG" },
-    { id: 4, name: "Team Member 4", role: "IoT Specialist", image: "/team-hafis.JPG" }
+    { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/hafis.JPG" },
+    { id: 2, name: "Team Member 2", role: "UI/UX Designer", image: "/hafis.JPG" },
+    { id: 3, name: "Team Member 3", role: "Backend Engineer", image: "/hafis.JPG" },
+    { id: 4, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
   ]
 };
 
