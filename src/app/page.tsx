@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe,
   Database,
@@ -18,7 +18,8 @@ import {
   Code2,
   LayoutDashboard,
   Menu,
-  X
+  X,
+  Building2
 } from 'lucide-react';
 
 const dict = {
@@ -69,7 +70,13 @@ const dict = {
     },
     workflow: {
       title: "Metodologi Eksekusi",
-      steps: ["Riset & Audit", "PRD Dasar", "Prototyping Cepat", "Pengembangan", "Peluncuran"]
+      steps: [
+        { title: "Riset & Audit", desc: "Menganalisis kebutuhan bisnis, tantangan operasional, dan infrastruktur teknis yang sudah ada untuk merumuskan strategi digital yang paling efektif." },
+        { title: "PRD Dasar", desc: "Menyusun Product Requirements Document (PRD) komprehensif yang mencakup arsitektur sistem, alur kerja, dan spesifikasi teknis untuk memastikan keselarasan visi." },
+        { title: "Prototyping Cepat", desc: "Membangun prototipe interaktif (UI/UX) beresolusi tinggi (High-Fidelity) untuk memvisualisasikan antarmuka dan pengalaman pengguna sebelum fase pengembangan dimulai." },
+        { title: "Pengembangan", desc: "Tim engineer kami menulis kode yang bersih, efisien, dan skalabel menggunakan teknologi enterprise mutakhir. Mencakup integrasi backend, frontend, dan API." },
+        { title: "Peluncuran", desc: "Fase pengujian akhir (QA), optimasi performa, dan deployment ke server production (Cloud). Kami memastikan peluncuran berjalan mulus tanpa downtime." }
+      ]
     },
     contact: {
       title1: "Mulai Kolaborasi ",
@@ -133,7 +140,13 @@ const dict = {
     },
     workflow: {
       title: "Execution Methodology",
-      steps: ["Research & Audit", "Base PRD", "Rapid Prototyping", "Development", "Deployment"]
+      steps: [
+        { title: "Research & Audit", desc: "Analyzing your business needs, operational challenges, and existing technical infrastructure to formulate the most effective digital strategy." },
+        { title: "Base PRD", desc: "Drafting a comprehensive Product Requirements Document (PRD) covering system architecture, workflows, and technical specifications." },
+        { title: "Rapid Prototyping", desc: "Building high-fidelity interactive prototypes (UI/UX) to visualize the user interface and experience before development begins." },
+        { title: "Development", desc: "Our engineers write clean, scalable code using cutting-edge enterprise technologies, including backend, frontend, and API integrations." },
+        { title: "Deployment", desc: "Final Quality Assurance (QA) testing, performance optimization, and seamless deployment to production cloud servers with zero downtime." }
+      ]
     },
     contact: {
       title1: "Start Collaborating ",
@@ -187,7 +200,9 @@ const teamDataTranslations = {
 };
 
 const mockPartners = [
-  { id: 1, name: "HIMA INFORMATIKA - UTI", image: "/Logo Hima HD.png" }
+  { id: 1, name: "HIMA INFORMATIKA - UTI", image: "/Logo Hima HD.png" },
+  { id: 2, name: "Fakultas Teknik dan Ilmu Komputer - UTI", image: "/ftik.png" },
+  { id: 3, name: "PT HEMPART INDONESIA", image: "/hempart.png" }
 ];
 
 export default function Home() {
@@ -195,6 +210,7 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeWorkflowStep, setActiveWorkflowStep] = useState(0);
 
   const t = dict[lang];
   const portfolios = portfolioDataTranslations[lang];
@@ -618,15 +634,36 @@ export default function Home() {
               <div className="hidden md:block absolute top-10 left-12 right-12 h-0.5 bg-gradient-to-r from-brand-600/50 via-brand-400 to-brand-600/50 border-t-2 border-dashed border-transparent z-0"></div>
 
               {t.workflow.steps.map((step, index) => (
-                <div key={index} className="flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0">
-                  <div className="w-20 h-20 rounded-full bg-[#030b14] border-2 border-white/10 flex items-center justify-center text-2xl font-black text-slate-600 group-hover:bg-brand-600 group-hover:border-brand-400 group-hover:text-white transition-all duration-500 shadow-[0_0_0_8px_rgba(10,21,38,1)]">
+                <div 
+                  key={index} 
+                  className={`flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0 cursor-pointer ${activeWorkflowStep === index ? 'opacity-100' : 'opacity-50 hover:opacity-100'} transition-opacity duration-300`}
+                  onClick={() => setActiveWorkflowStep(index)}
+                >
+                  <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-xl md:text-2xl font-black transition-all duration-500 shadow-[0_0_0_8px_rgba(10,21,38,1)] ${activeWorkflowStep === index ? 'bg-brand-500 border-brand-400 text-white shadow-[0_0_30px_rgba(11,132,235,0.5)]' : 'bg-[#030b14] border-2 border-white/10 text-slate-600 group-hover:bg-brand-900/50 group-hover:border-brand-500/50 group-hover:text-brand-300'}`}>
                     {index + 1}
                   </div>
-                  <h4 className="font-bold text-lg text-slate-300 group-hover:text-white transition-colors duration-300">
-                    {step}
+                  <h4 className={`font-bold text-base md:text-lg transition-colors duration-300 ${activeWorkflowStep === index ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'}`}>
+                    {step.title}
                   </h4>
                 </div>
               ))}
+            </div>
+
+            {/* Description Box */}
+            <div className="mt-8 md:mt-24 max-w-3xl mx-auto h-[200px] md:h-40">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeWorkflowStep}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 text-center shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
+                >
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">{t.workflow.steps[activeWorkflowStep].title}</h3>
+                  <p className="text-slate-300 text-sm md:text-lg leading-relaxed">{t.workflow.steps[activeWorkflowStep].desc}</p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </section>
@@ -738,13 +775,17 @@ export default function Home() {
               <div key={partner.id} className="group flex flex-col items-center justify-center p-8 rounded-3xl bg-[#030b14] border border-white/5 hover:border-brand-500/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(11,132,235,0.15)] w-64 h-48 relative overflow-hidden">
 
                 {/* Image Placeholder or Logo */}
-                <div className="relative w-full h-20 mb-4 opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                  <Image
-                    src={partner.image}
-                    alt={partner.name}
-                    fill
-                    className="object-contain"
-                  />
+                <div className="relative w-full h-20 mb-4 opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                  {partner.image ? (
+                    <Image
+                      src={partner.image}
+                      alt={partner.name}
+                      fill
+                      className="object-contain"
+                    />
+                  ) : (
+                    <Building2 className="w-12 h-12 text-slate-500 group-hover:text-brand-400 transition-colors duration-500" />
+                  )}
                 </div>
 
                 {/* Name */}
