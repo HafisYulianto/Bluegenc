@@ -172,15 +172,17 @@ const portfolioDataTranslations = {
 const teamDataTranslations = {
   id: [
     { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/hafis.JPG" },
-    { id: 2, name: "Anggota Tim 2", role: "UI/UX Designer", image: "/hafis.JPG" },
-    { id: 3, name: "Anggota Tim 3", role: "Backend Engineer", image: "/hafis.JPG" },
-    { id: 4, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
+    { id: 2, name: "M. Rizki Pratama", role: "Web Developer", image: "/rizkii.png" },
+    { id: 3, name: "Naswa Novellia", role: "UI/UX Designer", image: "/naswa.png" },
+    { id: 4, name: "Aditia Putra", role: "Web Developer", image: "/adit.png" },
+    { id: 5, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
   ],
   en: [
     { id: 1, name: "Hafis Yulianto", role: "Web Developer", image: "/hafis.JPG" },
-    { id: 2, name: "Team Member 2", role: "UI/UX Designer", image: "/hafis.JPG" },
-    { id: 3, name: "Team Member 3", role: "Backend Engineer", image: "/hafis.JPG" },
-    { id: 4, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
+    { id: 2, name: "M. Rizki Pratama", role: "Web Developer", image: "/rizkii.png" },
+    { id: 3, name: "Naswa Novellia", role: "UI/UX Designer", image: "/naswa.png" },
+    { id: 4, name: "Aditia Putra", role: "Web Developer", image: "/adit.png" },
+    { id: 5, name: "Rifqi Wahid Dhohiri", role: "IoT Specialist", image: "/rifqii.jpeg" }
   ]
 };
 
@@ -557,9 +559,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mt-12">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-12">
               {teams.map((member) => (
-                <div key={member.id} className="group relative rounded-3xl overflow-hidden bg-[#0d1e36] border border-white/5 hover:border-brand-500/50 transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(11,132,235,0.2)]">
+                <div key={member.id} className="w-full max-w-[320px] sm:max-w-none sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] xl:w-[calc(20%-2rem)] group relative rounded-3xl overflow-hidden bg-[#0d1e36] border border-white/5 hover:border-brand-500/50 transition-all duration-700 hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(11,132,235,0.2)]">
 
                   {/* Decorative Tech Corners */}
                   <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white/20 group-hover:border-brand-400 transition-colors duration-500 z-20"></div>
