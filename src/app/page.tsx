@@ -270,7 +270,7 @@ export default function Home() {
     <div className="min-h-screen font-sans selection:bg-brand-500 selection:text-white bg-[#030b14] text-slate-100 overflow-x-hidden">
 
       {/* A. Floating Glass Navigation & Independent Logo */}
-      <div className="fixed top-0 w-full z-50 px-4 py-4 md:px-8 md:py-6 transition-all duration-300 pointer-events-none flex justify-between items-center">
+      <div className="fixed top-0 w-full z-50 px-4 pt-2 pb-4 md:px-8 md:pt-4 md:pb-6 transition-all duration-300 pointer-events-none flex justify-between items-center">
 
         {/* Independent Logo at Top Left */}
         <Link href="/" className="cursor-pointer pointer-events-auto shrink-0">
@@ -306,7 +306,7 @@ export default function Home() {
               {t.nav.cta}
             </Link>
             {/* Mobile Menu Toggle Button */}
-            <button 
+            <button
               className="lg:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
               onClick={toggleMobileMenu}
               aria-label="Toggle Mobile Menu"
@@ -335,18 +335,30 @@ export default function Home() {
 
       <main>
         {/* B. Hero Section - 3D Dashboard Mockup & Neon Glows */}
-        <section className="relative pt-40 pb-20 overflow-hidden bg-[#030b14]">
+        <section className="relative pt-40 pb-20 overflow-hidden bg-[#030b14] min-h-screen flex flex-col justify-center">
+          {/* Office Background Image with Dark Overlay */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src="/kantor.png"
+              alt="Bluegenc Office"
+              fill
+              className="object-cover object-top opacity-60"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#030b14]/30 via-[#030b14]/60 to-[#030b14]"></div>
+          </div>
+
           {/* Neon Gradients */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-600/30 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/20 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-600/30 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/20 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen z-0"></div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 mt-10"
+            className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 -mt-4 md:-mt-12"
           >
             <div className="rounded-full bg-brand-900/50 backdrop-blur-md text-brand-300 border border-brand-500/30 px-6 py-2 text-sm font-semibold mb-8 shadow-[0_0_20px_rgba(11,132,235,0.15)] inline-flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-brand-400" /> {t.hero.badge}
@@ -380,7 +392,7 @@ export default function Home() {
         {/* B2. About Section - The Origin Story */}
         <section id="tentang" className="relative py-24 px-4 md:px-8 bg-[#030b14]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen"></div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -412,7 +424,7 @@ export default function Home() {
 
         {/* C. Services Section - Bento Box Grid */}
         <section id="layanan" className="relative py-32 px-4 md:px-8 bg-[#0a1526] border-t border-white/5">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -496,7 +508,7 @@ export default function Home() {
 
         {/* D. Featured Portfolio Section - Sleek Dark Gallery */}
         <section id="portofolio" className="py-32 px-4 md:px-8 bg-[#030b14] relative border-y border-white/5">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -567,7 +579,7 @@ export default function Home() {
 
         {/* E. Team Section */}
         <section id="tim" className="py-32 px-4 md:px-8 bg-[#0a1526] relative border-t border-white/5">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -626,7 +638,7 @@ export default function Home() {
 
         {/* F. Workflow Section - Interactive Stepper Style */}
         <section id="cara-kerja" className="relative py-32 px-4 md:px-8 bg-[#030b14] border-t border-white/5">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -642,8 +654,8 @@ export default function Home() {
               <div className="hidden md:block absolute top-10 left-12 right-12 h-0.5 bg-gradient-to-r from-brand-600/50 via-brand-400 to-brand-600/50 border-t-2 border-dashed border-transparent z-0"></div>
 
               {t.workflow.steps.map((step, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={`flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0 cursor-pointer ${activeWorkflowStep === index ? 'opacity-100' : 'opacity-50 hover:opacity-100'} transition-opacity duration-300`}
                   onClick={() => setActiveWorkflowStep(index)}
                 >
@@ -679,7 +691,7 @@ export default function Home() {
         {/* F. Contact Section - Massive Gradient Glass Card */}
         <section id="kontak" className="bg-[#030b14] relative py-32 px-4 md:px-8">
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -767,7 +779,7 @@ export default function Home() {
       <section className="py-20 md:py-32 border-t border-white/5 bg-[#0a1526] relative flex flex-col items-center px-4">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen pointer-events-none"></div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -813,7 +825,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            
+
             {/* Column 1: Brand */}
             <div className="flex flex-col gap-6">
               <Image
@@ -849,7 +861,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-red-500 hover:to-pink-500 hover:text-white transition-all duration-300 border border-white/10"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
                 </a>
               </div>
             </div>
@@ -883,7 +895,7 @@ export default function Home() {
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
                   <span className="text-slate-400 text-sm leading-relaxed">
-                    Bandar Lampung, Lampung<br/>
+                    Bandar Lampung, Lampung<br />
                     Indonesia
                   </span>
                 </li>
