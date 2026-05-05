@@ -62,11 +62,13 @@ const dict = {
     },
     portfolio: {
       title: "Project",
-      visit: "Kunjungi Platform"
+      visit: "Kunjungi Platform",
+      year: "Tahun"
     },
     team: {
       title: "Tim Eksekutif",
-      desc: "Inovator di balik arsitektur digital Bluegenc."
+      desc: "Inovator di balik arsitektur digital Bluegenc.",
+      badge: "Tim Inti"
     },
     workflow: {
       title: "Metodologi Eksekusi",
@@ -87,7 +89,9 @@ const dict = {
       name: "Nama Lengkap",
       email: "Email Perusahaan",
       message: "Ceritakan detail proyek...",
-      send: "Kirim Pesan"
+      send: "Kirim Pesan",
+      sending: "Mengirim...",
+      sent: "Pesan Terkirim!"
     },
     footer: {
       copyright: `© ${new Date().getFullYear()} Bluegenc. Hak cipta dilindungi.`
@@ -132,11 +136,13 @@ const dict = {
     },
     portfolio: {
       title: "Projects",
-      visit: "Visit Platform"
+      visit: "Visit Platform",
+      year: "Year"
     },
     team: {
       title: "Executive Team",
-      desc: "The innovators behind Bluegenc's digital architecture."
+      desc: "The innovators behind Bluegenc's digital architecture.",
+      badge: "Core Team"
     },
     workflow: {
       title: "Execution Methodology",
@@ -157,7 +163,9 @@ const dict = {
       name: "Full Name",
       email: "Company Email",
       message: "Tell us about your project...",
-      send: "Send Message"
+      send: "Send Message",
+      sending: "Sending...",
+      sent: "Message Sent!"
     },
     footer: {
       copyright: `© ${new Date().getFullYear()} Bluegenc. All rights reserved.`
@@ -601,7 +609,7 @@ export default function Home() {
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 flex flex-col justify-end h-full pointer-events-none">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-300 text-xs font-bold mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        <Zap className="w-3 h-3" /> Core Team
+                        <Zap className="w-3 h-3" /> {t.team.badge}
                       </div>
                       <h3 className="text-2xl font-extrabold text-white mb-1 drop-shadow-lg">{member.name}</h3>
                       <p className="text-brand-400 font-medium text-sm md:text-base tracking-wide uppercase">{member.role}</p>
@@ -745,7 +753,7 @@ export default function Home() {
                       'bg-brand-500 hover:bg-brand-400 text-white shadow-[0_0_20px_rgba(11,132,235,0.3)] hover:shadow-[0_0_40px_rgba(11,132,235,0.5)] hover:-translate-y-1'
                     }`}
                 >
-                  {isSubmitting ? 'Mengirim...' : submitStatus === 'success' ? 'Pesan Terkirim!' : t.contact.send}
+                  {isSubmitting ? t.contact.sending : submitStatus === 'success' ? t.contact.sent : t.contact.send}
                   {!isSubmitting && submitStatus !== 'success' && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
                 </button>
               </form>
