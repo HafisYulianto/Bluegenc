@@ -57,8 +57,7 @@ const dict = {
       s3_title: "Solusi IoT Pintar",
       s3_desc: "Integrasi hardware, dasbor real-time, dan telemetri robotika udara tingkat lanjut.",
       s4_title: "Aplikasi Mobile Enterprise",
-      s4_desc: "Akses, kontrol, dan monitoring sistem operasional secara langsung di dalam genggaman, mendukung iOS & Android.",
-      s4_cta: "Minta Demo"
+      s4_desc: "Akses, kontrol, dan monitoring sistem operasional secara langsung di dalam genggaman, mendukung iOS & Android."
     },
     portfolio: {
       title: "Project",
@@ -137,8 +136,7 @@ const dict = {
       s3_title: "Smart IoT Solutions",
       s3_desc: "Hardware integration, real-time dashboards, and advanced aerial robotics telemetry.",
       s4_title: "Enterprise Mobile Apps",
-      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android.",
-      s4_cta: "Request Demo"
+      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android."
     },
     portfolio: {
       title: "Projects",
@@ -502,19 +500,16 @@ export default function Home() {
               </div>
 
               {/* Feature 4 (Wide Horizontal) - White Card */}
-              <div className="lg:col-span-2 bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 group hover:border-brand-400 hover:shadow-lg hover:shadow-brand-100 transition-all duration-500 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-5 w-full sm:w-auto">
+              <div className="lg:col-span-2 bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 group hover:border-brand-400 hover:shadow-lg hover:shadow-brand-100 transition-all duration-500 flex flex-col sm:flex-row items-center gap-6">
+                <div className="flex items-center gap-5 w-full">
                   <div className="w-14 h-14 md:w-16 md:h-16 bg-brand-50 border border-brand-100 rounded-2xl flex items-center justify-center shrink-0">
                     <Smartphone className="w-7 h-7 md:w-8 md:h-8 text-brand-500" />
                   </div>
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-[#0d2047] mb-1">{t.services.s4_title}</h3>
-                    <p className="text-slate-500 text-sm md:text-base max-w-lg">{t.services.s4_desc}</p>
+                    <p className="text-slate-500 text-sm md:text-base max-w-2xl">{t.services.s4_desc}</p>
                   </div>
                 </div>
-                <Link href="#kontak" className="w-full sm:w-auto shrink-0 px-6 py-3 bg-[#0d2047] text-white rounded-full font-bold hover:bg-brand-600 hover:scale-105 transition-all text-center text-sm md:text-base">
-                  {t.services.s4_cta}
-                </Link>
               </div>
 
             </div>
