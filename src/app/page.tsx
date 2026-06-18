@@ -537,60 +537,82 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Slider Container */}
-            <div className="flex overflow-x-auto gap-4 md:gap-6 pb-12 pt-4 px-4 -mx-4 snap-x snap-mandatory hide-scrollbar">
-              {portfolios.map((item, index) => (
-                <article key={item.id} className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 snap-center group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
-                  {/* Glowing Edge on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0"></div>
+            {/* Auto-scroll Portfolio Slider with pause on hover */}
+            <div className="relative overflow-hidden mt-4">
+              {/* Left fade gradient */}
+              <div className="absolute left-0 top-0 h-full w-20 md:w-32 bg-gradient-to-r from-[#030b14] to-transparent z-10 pointer-events-none" />
+              {/* Right fade gradient */}
+              <div className="absolute right-0 top-0 h-full w-20 md:w-32 bg-gradient-to-l from-[#030b14] to-transparent z-10 pointer-events-none" />
 
-                  {/* Image Area */}
-                  <div className={`w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10`}>
-                    {(item as any).image ? (
-                      <Image
-                        src={(item as any).image}
-                        alt={item.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
-                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 360px, 380px"
-                        quality={80}
-                      />
-                    ) : (
-                      <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
-                    )}
-
-                    {/* Inner Shadow overlay to blend with dark card */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none"></div>
-                  </div>
-
-                  <div className="p-6 md:p-7 flex flex-col flex-1 relative z-10">
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {item.tags.map((tag, i) => (
-                        <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-[10px] md:text-xs px-2.5 py-1 rounded-lg font-semibold tracking-wide">
-                          {tag}
-                        </span>
-                      ))}
+              {/* Scrolling Track — duplicate items for seamless infinite loop */}
+              <div className="flex gap-4 md:gap-6 pb-6 pt-4 animate-scroll hover:[animation-play-state:paused] w-max">
+                {/* First set */}
+                {portfolios.map((item) => (
+                  <article key={`a-${item.id}`} className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
+                    <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0" />
+                    <div className="w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10">
+                      {(item as any).image ? (
+                        <Image
+                          src={(item as any).image}
+                          alt={item.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 360px, 380px"
+                          quality={80}
+                        />
+                      ) : (
+                        <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none" />
                     </div>
-
-                    <h3 className="font-bold text-xl md:text-2xl text-white mb-2">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">
-                      {item.desc}
-                    </p>
-
-                    <Link
-                      href={item.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-brand-300 font-bold text-sm flex items-center gap-2 transition-colors duration-300 w-fit"
-                    >
-                      {t.portfolio.visit} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </article>
-              ))}
+                    <div className="p-6 md:p-7 flex flex-col flex-1 relative z-10">
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        {item.tags.map((tag, i) => (
+                          <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-[10px] md:text-xs px-2.5 py-1 rounded-lg font-semibold tracking-wide">{tag}</span>
+                        ))}
+                      </div>
+                      <h3 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h3>
+                      <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">{item.desc}</p>
+                      <Link href={item.demo} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-300 font-bold text-sm flex items-center gap-2 transition-colors duration-300 w-fit">
+                        {t.portfolio.visit} <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+                {/* Duplicate set for seamless loop */}
+                {portfolios.map((item) => (
+                  <article key={`b-${item.id}`} aria-hidden="true" className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
+                    <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0" />
+                    <div className="w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10">
+                      {(item as any).image ? (
+                        <Image
+                          src={(item as any).image}
+                          alt={item.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 360px, 380px"
+                          quality={80}
+                        />
+                      ) : (
+                        <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none" />
+                    </div>
+                    <div className="p-6 md:p-7 flex flex-col flex-1 relative z-10">
+                      <div className="flex flex-wrap gap-2 mb-5">
+                        {item.tags.map((tag, i) => (
+                          <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-[10px] md:text-xs px-2.5 py-1 rounded-lg font-semibold tracking-wide">{tag}</span>
+                        ))}
+                      </div>
+                      <h3 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h3>
+                      <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">{item.desc}</p>
+                      <Link href={item.demo} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-300 font-bold text-sm flex items-center gap-2 transition-colors duration-300 w-fit">
+                        {t.portfolio.visit} <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>
