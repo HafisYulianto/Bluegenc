@@ -94,7 +94,13 @@ const dict = {
       sent: "Pesan Terkirim!"
     },
     footer: {
-      copyright: `© ${new Date().getFullYear()} Bluegenc. Hak cipta dilindungi.`
+      copyright: `© ${new Date().getFullYear()} Bluegenc. Hak cipta dilindungi.`,
+      brandDesc: "Mitra strategis Anda dalam transformasi digital. Merancang ekosistem teknologi masa depan untuk pertumbuhan bisnis yang tanpa batas.",
+      navTitle: "Navigasi",
+      servicesTitle: "Layanan Kami",
+      contactTitle: "Kontak",
+      legal1: "Syarat & Ketentuan",
+      legal2: "Kebijakan Privasi"
     }
   },
   en: {
@@ -168,7 +174,13 @@ const dict = {
       sent: "Message Sent!"
     },
     footer: {
-      copyright: `© ${new Date().getFullYear()} Bluegenc. All rights reserved.`
+      copyright: `© ${new Date().getFullYear()} Bluegenc. All rights reserved.`,
+      brandDesc: "Your strategic partner in digital transformation. Building future-ready technology ecosystems for limitless business growth.",
+      navTitle: "Navigation",
+      servicesTitle: "Our Services",
+      contactTitle: "Contact",
+      legal1: "Terms & Conditions",
+      legal2: "Privacy Policy"
     }
   }
 };
@@ -210,7 +222,8 @@ const teamDataTranslations = {
 const mockPartners = [
   { id: 1, name: "HIMA INFORMATIKA - UTI", image: "/Logo Hima HD.png" },
   { id: 2, name: "Fakultas Teknik dan Ilmu Komputer - UTI", image: "/ftik.png" },
-  { id: 3, name: "PT HEMPART INDONESIA", image: "/hempart.png" }
+  { id: 3, name: "PT HEMPART INDONESIA", image: "/hempart.png" },
+  { id: 4, name: "Fakultas Sastra dan Ilmu Pendidikan - UTI", image: "/ftik.png" }
 ];
 
 export default function Home() {
@@ -836,7 +849,7 @@ export default function Home() {
                 className="h-16 w-auto object-contain origin-left"
               />
               <p className="text-slate-400 text-sm leading-relaxed">
-                Mitra strategis Anda dalam transformasi digital. Merancang ekosistem teknologi masa depan untuk pertumbuhan bisnis yang tanpa batas.
+                {t.footer.brandDesc}
               </p>
               <div className="flex items-center gap-4 mt-2">
                 <a
@@ -868,7 +881,7 @@ export default function Home() {
 
             {/* Column 2: Navigation */}
             <div>
-              <h4 className="text-white font-bold text-lg mb-6">Navigasi</h4>
+              <h4 className="text-white font-bold text-lg mb-6">{t.footer.navTitle}</h4>
               <ul className="space-y-4">
                 <li><Link href="#tentang" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.about}</Link></li>
                 <li><Link href="#layanan" className="text-slate-400 hover:text-brand-400 transition-colors text-sm">{t.nav.services}</Link></li>
@@ -879,7 +892,7 @@ export default function Home() {
 
             {/* Column 3: Services */}
             <div>
-              <h4 className="text-white font-bold text-lg mb-6">Layanan Kami</h4>
+              <h4 className="text-white font-bold text-lg mb-6">{t.footer.servicesTitle}</h4>
               <ul className="space-y-4">
                 <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s1_title}</li>
                 <li className="text-slate-400 hover:text-white transition-colors text-sm cursor-pointer">{t.services.s2_title}</li>
@@ -890,7 +903,7 @@ export default function Home() {
 
             {/* Column 4: Contact info */}
             <div>
-              <h4 className="text-white font-bold text-lg mb-6">Kontak</h4>
+              <h4 className="text-white font-bold text-lg mb-6">{t.footer.contactTitle}</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
@@ -910,8 +923,8 @@ export default function Home() {
               {t.footer.copyright}
             </p>
             <div className="flex gap-6 text-sm text-slate-500">
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Syarat & Ketentuan</Link>
-              <Link href="#" className="hover:text-white cursor-pointer transition-colors">Kebijakan Privasi</Link>
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">{t.footer.legal1}</Link>
+              <Link href="#" className="hover:text-white cursor-pointer transition-colors">{t.footer.legal2}</Link>
             </div>
           </div>
         </div>
