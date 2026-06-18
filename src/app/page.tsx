@@ -786,7 +786,6 @@ export default function Home() {
 
           </motion.div>
         </section>
-      </main>
 
       {/* H. Partners Section - Trusted By */}
       <section className="py-20 md:py-32 border-t border-white/5 bg-[#0a1526] relative flex flex-col items-center px-4">
@@ -830,6 +829,8 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+
+      </main>
 
       {/* I. Premium Enterprise Footer */}
       <footer className="pt-20 pb-10 bg-[#020810] border-t border-white/5 relative overflow-hidden">
