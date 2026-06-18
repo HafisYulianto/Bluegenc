@@ -29,7 +29,7 @@ const dict = {
     nav: { about: "Tentang Kami", services: "Layanan", portfolio: "Portofolio", team: "Tim", workflow: "Cara Kerja", cta: "Mulai Proyek" },
     hero: {
       badge: "From Zero to Hero.",
-      title1: "Bluegenc-",
+      title1: "Bluegenc – ",
       title2: "",
       titleHighlight: "Blue Agency",
       desc: "Adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi.",
@@ -328,7 +328,13 @@ export default function Home() {
     <div className="min-h-screen font-sans selection:bg-brand-500 selection:text-white bg-white text-slate-900 overflow-x-hidden">
 
       {/* A. Floating Glass Navigation & Independent Logo */}
-      <div className="fixed top-0 w-full z-50 px-4 pt-2 pb-4 md:px-8 md:pt-4 md:pb-6 transition-all duration-300 pointer-events-none flex justify-between items-center">
+      <div className={`fixed top-0 w-full z-50 transition-all duration-500 flex justify-between items-center ${
+        isMobileMenuOpen 
+          ? 'bg-transparent border-b-0 shadow-none p-4 md:px-8'
+          : navTheme === 'white'
+            ? 'max-lg:bg-white/90 max-lg:border-b max-lg:border-slate-200/80 max-lg:shadow-sm max-lg:backdrop-blur-md px-4 py-2 lg:px-8 lg:pt-4 lg:pb-6'
+            : 'max-lg:bg-[#02345d]/90 max-lg:border-b max-lg:border-white/10 max-lg:shadow-sm max-lg:backdrop-blur-md px-4 py-2 lg:px-8 lg:pt-4 lg:pb-6'
+      } pointer-events-auto lg:pointer-events-none`}>
 
         {/* Independent Logo at Top Left */}
         <Link href="/" className="cursor-pointer pointer-events-auto shrink-0">
@@ -337,17 +343,19 @@ export default function Home() {
             alt="Bluegenc Logo"
             width={400}
             height={100}
-            className="h-24 md:h-36 w-auto object-contain origin-left hover:scale-[1.05] transition-transform duration-300 ease-out"
+            className="h-10 sm:h-12 md:h-16 lg:h-24 w-auto object-contain origin-left hover:scale-[1.05] transition-transform duration-300 ease-out"
             priority
             quality={85}
           />
         </Link>
 
         {/* Floating Nav Pill (Right Aligned) */}
-        <header className={`backdrop-blur-2xl rounded-full shadow-xl transition-all duration-700 ease-in-out px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0 ${
+        <header className={`transition-all duration-700 ease-in-out flex items-center gap-6 pointer-events-auto shrink-0 ${
+          'max-lg:bg-transparent max-lg:border-0 max-lg:shadow-none max-lg:px-0 max-lg:h-auto'
+        } ${
           navTheme === 'white'
-            ? 'bg-white/90 border border-slate-200/80 shadow-slate-200/50'
-            : 'bg-[#02345d]/90 border border-white/10 shadow-[#02345d]/30'
+            ? 'lg:bg-white/90 lg:border lg:border-slate-200/80 lg:shadow-xl lg:shadow-slate-200/50 backdrop-blur-2xl rounded-full px-6 h-16'
+            : 'lg:bg-[#02345d]/90 lg:border lg:border-white/10 lg:shadow-xl lg:shadow-[#02345d]/30 backdrop-blur-2xl rounded-full px-6 h-16'
         }`}>
           <nav className={`hidden lg:flex gap-8 items-center font-medium transition-colors duration-700 ease-in-out ${
             navTheme === 'white' ? 'text-slate-600' : 'text-slate-300'
@@ -445,7 +453,7 @@ export default function Home() {
               <Sparkles className="w-4 h-4 text-brand-400" /> {t.hero.badge}
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-white mb-8 leading-[1.1] max-w-4xl text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-white mb-8 leading-[1.1] max-w-4xl text-center">
               {t.hero.title1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-200 to-white">{t.hero.titleHighlight}</span>
               {t.hero.title2 && (
                 <>
@@ -455,7 +463,7 @@ export default function Home() {
               )}
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-14 font-light">
+            <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-14 font-light">
               {t.hero.desc}
             </p>
 
@@ -608,7 +616,7 @@ export default function Home() {
               {/* Left Chevron Button */}
               <button
                 onClick={slideLeft}
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 flex items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
+                className="hidden lg:flex absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
                 aria-label="Slide Left"
               >
                 <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
@@ -617,7 +625,7 @@ export default function Home() {
               {/* Right Chevron Button */}
               <button
                 onClick={slideRight}
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 flex items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
+                className="hidden lg:flex absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
                 aria-label="Slide Right"
               >
                 <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
@@ -739,14 +747,15 @@ export default function Home() {
               {t.workflow.title}
             </h2>
 
-            <div className="flex flex-col md:flex-row justify-between relative">
+            {/* Desktop Stepper (hidden on mobile) */}
+            <div className="hidden md:flex flex-row justify-between relative">
               {/* Connecting Line */}
-              <div className="hidden md:block absolute top-10 left-12 right-12 h-0.5 bg-gradient-to-r from-brand-200 via-brand-500 to-brand-200 z-0"></div>
+              <div className="absolute top-10 left-12 right-12 h-0.5 bg-gradient-to-r from-brand-200 via-brand-500 to-brand-200 z-0"></div>
 
               {t.workflow.steps.map((step, index) => (
                 <div
                   key={index}
-                  className="flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0 cursor-pointer"
+                  className="flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 cursor-pointer"
                   onClick={() => setActiveWorkflowStep(index)}
                 >
                   <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-xl md:text-2xl font-black transition-all duration-500 shadow-[0_0_0_8px_rgba(255,255,255,1)] ${activeWorkflowStep === index ? 'bg-brand-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)]' : 'bg-white border-2 border-slate-200/60 text-slate-300/60 group-hover:border-brand-300 group-hover:text-brand-500'}`}>
@@ -759,8 +768,8 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Description Box */}
-            <div className="mt-8 md:mt-24 max-w-3xl mx-auto h-[200px] md:h-40">
+            {/* Desktop Description Box (hidden on mobile) */}
+            <div className="hidden md:block mt-8 md:mt-24 max-w-3xl mx-auto h-[200px] md:h-40">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeWorkflowStep}
@@ -774,6 +783,60 @@ export default function Home() {
                   <p className="text-slate-600 text-sm md:text-lg leading-relaxed">{t.workflow.steps[activeWorkflowStep].desc}</p>
                 </motion.div>
               </AnimatePresence>
+            </div>
+
+            {/* Mobile Stepper Accordion (hidden on desktop) */}
+            <div className="md:hidden space-y-4">
+              {t.workflow.steps.map((step, index) => {
+                const isActive = activeWorkflowStep === index;
+                return (
+                  <div
+                    key={index}
+                    className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+                      isActive
+                        ? 'border-brand-500 bg-[#f0f5ff] shadow-md shadow-brand-100/50'
+                        : 'border-slate-200 bg-white hover:border-brand-300'
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setActiveWorkflowStep(index)}
+                      className="w-full flex items-center justify-between p-5 text-left focus:outline-none cursor-pointer"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black transition-colors duration-300 ${
+                          isActive ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-400'
+                        }`}>
+                          {index + 1}
+                        </div>
+                        <span className={`font-bold transition-colors duration-300 ${
+                          isActive ? 'text-[#0d2047]' : 'text-slate-600'
+                        }`}>
+                          {step.title}
+                        </span>
+                      </div>
+                      <ChevronRight className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${
+                        isActive ? 'rotate-90 text-brand-500' : ''
+                      }`} />
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="px-5 pb-5 pt-0 text-slate-600 text-sm leading-relaxed border-t border-brand-100/30 pt-3">
+                            {step.desc}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         </section>
@@ -790,31 +853,31 @@ export default function Home() {
           >
 
             {/* Left side text */}
-            <div className="flex-1 p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
+            <div className="flex-1 p-6 sm:p-10 md:p-16 flex flex-col justify-center relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05] mix-blend-screen pointer-events-none"></div>
 
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8 relative z-10 leading-tight text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 sm:mb-8 relative z-10 leading-tight text-white">
                 {t.contact.title1}<br /><span className="text-brand-400">{t.contact.titleHighlight}</span>
               </h2>
-              <p className="text-slate-400 leading-relaxed mb-14 relative z-10 text-lg">
+              <p className="text-slate-400 leading-relaxed mb-8 sm:mb-14 relative z-10 text-base sm:text-lg">
                 {t.contact.desc}
               </p>
 
-              <div className="space-y-8 relative z-10 mt-auto">
-                <div className="flex items-center gap-6 group">
-                  <div className="w-16 h-16 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:border-brand-400 transition-all duration-500">
-                    <Mail className="w-7 h-7 text-white" />
+              <div className="space-y-6 sm:space-y-8 relative z-10 mt-auto">
+                <div className="flex items-center gap-4 sm:gap-6 group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-500 group-hover:border-brand-400 transition-all duration-500">
+                    <Mail className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
                   </div>
                   <div>
-                    <div className="font-medium text-slate-400 mb-1">{t.contact.direct}</div>
-                    <a href="mailto:blueagencylampung@gmail.com" className="text-lg md:text-xl text-white font-bold hover:text-brand-300 transition-colors">blueagencylampung@gmail.com</a>
+                    <div className="font-medium text-slate-400 text-xs sm:text-sm mb-1">{t.contact.direct}</div>
+                    <a href="mailto:blueagencylampung@gmail.com" className="text-sm sm:text-lg md:text-xl text-white font-bold hover:text-brand-300 transition-colors break-all">blueagencylampung@gmail.com</a>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right side form (Glassy Dark) */}
-            <div className="flex-1 bg-white/5 backdrop-blur-xl p-10 md:p-16 relative border-l border-white/10">
+            <div className="flex-1 bg-white/5 backdrop-blur-xl p-6 sm:p-10 md:p-16 relative border-t lg:border-t-0 lg:border-l border-white/10">
               <h3 className="text-2xl font-bold text-white mb-8">{t.contact.formTitle}</h3>
               <form onSubmit={handleSendMessage} className="space-y-5">
                 <div>
@@ -878,12 +941,12 @@ export default function Home() {
             {t.partners.title}
           </h2>
 
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 max-w-4xl mx-auto">
             {mockPartners.map((partner) => (
-              <div key={partner.id} className="group flex flex-col items-center justify-center p-8 rounded-3xl bg-white border border-slate-200 hover:border-brand-400 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-100 w-64 h-48 relative overflow-hidden">
+              <div key={partner.id} className="group flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-brand-400 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand-100 w-[calc(50%-0.5rem)] sm:w-64 h-36 sm:h-48 relative overflow-hidden">
 
                 {/* Image Placeholder or Logo */}
-                <div className="relative w-full h-20 mb-4 opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                <div className="relative w-full h-12 sm:h-20 mb-2 sm:mb-4 opacity-70 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
                   {partner.image ? (
                     <Image
                       src={partner.image}
@@ -892,12 +955,12 @@ export default function Home() {
                       className="object-contain"
                     />
                   ) : (
-                    <Building2 className="w-12 h-12 text-slate-500 group-hover:text-brand-400 transition-colors duration-500" />
+                    <Building2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 group-hover:text-brand-400 transition-colors duration-500" />
                   )}
                 </div>
 
                 {/* Name */}
-                <h3 className="font-bold text-[#0d2047] text-center text-sm md:text-base group-hover:text-brand-600 transition-colors duration-300">
+                <h3 className="font-bold text-[#0d2047] text-center text-xs sm:text-sm md:text-base group-hover:text-brand-600 transition-colors duration-300 line-clamp-2">
                   {partner.name}
                 </h3>
               </div>
