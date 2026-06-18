@@ -58,6 +58,7 @@ const dict = {
       s3_desc: "Integrasi hardware, dasbor real-time, dan telemetri robotika udara tingkat lanjut.",
       s4_title: "Aplikasi Mobile Enterprise",
       s4_desc: "Akses, kontrol, dan monitoring sistem operasional secara langsung di dalam genggaman, mendukung iOS & Android.",
+      s4_cta: "Minta Demo"
     },
     portfolio: {
       title: "Project",
@@ -136,7 +137,8 @@ const dict = {
       s3_title: "Smart IoT Solutions",
       s3_desc: "Hardware integration, real-time dashboards, and advanced aerial robotics telemetry.",
       s4_title: "Enterprise Mobile Apps",
-      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android."
+      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android.",
+      s4_cta: "Request Demo"
     },
     portfolio: {
       title: "Projects",
