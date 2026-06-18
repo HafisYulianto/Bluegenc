@@ -32,7 +32,7 @@ const dict = {
       title1: "Bluegenc-",
       title2: "",
       titleHighlight: "Blue Agency",
-      desc: "Blue Agency adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi.",
+      desc: "Adalah mitra strategis Anda dalam transformasi digital. Kami merancang, mengembangkan, dan mengelola perangkat lunak skala enterprise, antarmuka yang elegan, serta ekosistem IoT terintegrasi.",
       cta1: "Konsultasi Gratis",
       cta2: "Eksplorasi Portofolio"
     },
@@ -344,12 +344,12 @@ export default function Home() {
         </Link>
 
         {/* Floating Nav Pill (Right Aligned) */}
-        <header className={`backdrop-blur-2xl rounded-full shadow-xl transition-all duration-500 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0 ${
+        <header className={`backdrop-blur-2xl rounded-full shadow-xl transition-all duration-700 ease-in-out px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0 ${
           navTheme === 'white'
             ? 'bg-white/90 border border-slate-200/80 shadow-slate-200/50'
             : 'bg-[#02345d]/90 border border-white/10 shadow-[#02345d]/30'
         }`}>
-          <nav className={`hidden lg:flex gap-8 items-center font-medium transition-colors duration-500 ${
+          <nav className={`hidden lg:flex gap-8 items-center font-medium transition-colors duration-700 ease-in-out ${
             navTheme === 'white' ? 'text-slate-600' : 'text-slate-300'
           }`}>
             <Link href="#tentang" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.about}</Link>
@@ -359,7 +359,7 @@ export default function Home() {
             <Link href="#cara-kerja" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.workflow}</Link>
           </nav>
 
-          <div className={`flex items-center gap-3 lg:border-l lg:pl-6 transition-colors duration-500 ${
+          <div className={`flex items-center gap-3 lg:border-l lg:pl-6 transition-colors duration-700 ease-in-out ${
             navTheme === 'white' ? 'lg:border-slate-200' : 'lg:border-white/10'
           }`}>
             {/* Language Toggle */}
@@ -746,13 +746,13 @@ export default function Home() {
               {t.workflow.steps.map((step, index) => (
                 <div
                   key={index}
-                  className={`flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0 cursor-pointer ${activeWorkflowStep === index ? 'opacity-100' : 'opacity-40 hover:opacity-100'} transition-opacity duration-300`}
+                  className="flex flex-row md:flex-col items-center md:text-center gap-6 md:gap-4 group relative z-10 mb-8 md:mb-0 cursor-pointer"
                   onClick={() => setActiveWorkflowStep(index)}
                 >
-                  <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-xl md:text-2xl font-black transition-all duration-500 shadow-[0_0_0_8px_rgba(255,255,255,1)] ${activeWorkflowStep === index ? 'bg-brand-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)]' : 'bg-white border-2 border-slate-200 text-slate-300 group-hover:bg-brand-50 group-hover:border-brand-300 group-hover:text-brand-500'}`}>
+                  <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-xl md:text-2xl font-black transition-all duration-500 shadow-[0_0_0_8px_rgba(255,255,255,1)] ${activeWorkflowStep === index ? 'bg-brand-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)]' : 'bg-white border-2 border-slate-200/60 text-slate-300/60 group-hover:border-brand-300 group-hover:text-brand-500'}`}>
                     {index + 1}
                   </div>
-                  <h4 className={`font-bold text-base md:text-lg transition-colors duration-300 ${activeWorkflowStep === index ? 'text-[#0d2047]' : 'text-slate-400 group-hover:text-slate-600'}`}>
+                  <h4 className={`font-bold text-base md:text-lg transition-colors duration-300 ${activeWorkflowStep === index ? 'text-[#0d2047]' : 'text-slate-400/50 group-hover:text-slate-600'}`}>
                     {step.title}
                   </h4>
                 </div>
