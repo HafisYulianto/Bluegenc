@@ -58,7 +58,6 @@ const dict = {
       s3_desc: "Integrasi hardware, dasbor real-time, dan telemetri robotika udara tingkat lanjut.",
       s4_title: "Aplikasi Mobile Enterprise",
       s4_desc: "Akses, kontrol, dan monitoring sistem operasional secara langsung di dalam genggaman, mendukung iOS & Android.",
-      s4_cta: "Minta Demo"
     },
     portfolio: {
       title: "Project",
@@ -299,7 +298,7 @@ export default function Home() {
         </Link>
 
         {/* Floating Nav Pill (Right Aligned) */}
-        <header className="backdrop-blur-2xl bg-[#0d2047]/90 border border-white/10 rounded-full shadow-2xl shadow-[#0d2047]/30 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
+        <header className="backdrop-blur-2xl bg-[#02345d]/90 border border-white/10 rounded-full shadow-2xl shadow-[#02345d]/30 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
           <nav className="hidden lg:flex gap-8 items-center font-medium text-slate-300">
             <Link href="#tentang" className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
             <Link href="#layanan" className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
@@ -333,7 +332,7 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0d2047]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
+        <div className="fixed inset-0 z-40 bg-[#02345d]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
           <nav className="flex flex-col gap-8 items-center text-xl font-medium text-slate-300">
             <Link href="#tentang" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
             <Link href="#layanan" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
@@ -348,25 +347,25 @@ export default function Home() {
       )}
 
       <main>
-        {/* B. Hero Section - Navy Background */}
-        <section className="relative pt-40 pb-20 overflow-hidden bg-[#0d2047] min-h-screen flex flex-col justify-center">
-          {/* Office Background Image with Dark Overlay */}
+        {/* B. Hero Section - Dark Neutral Background */}
+        <section className="relative pt-40 pb-20 overflow-hidden bg-neutral-950 min-h-screen flex flex-col justify-center">
+          {/* Office Background Image with Dark Overlay (Original Photo Colors) */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src="/kantor.png"
               alt="Bluegenc Office"
               fill
-              className="object-cover object-top opacity-40"
+              className="object-cover object-top opacity-85"
               priority
-              quality={70}
+              quality={75}
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0d2047]/50 via-[#0d2047]/70 to-[#0d2047]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-neutral-950"></div>
           </div>
 
-          {/* Navy Glow Gradients */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/20 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
-          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/15 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
+          {/* Subtle Ambient Glow Gradients (Neutral) */}
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-slate-500/5 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen z-0"></div>
 
