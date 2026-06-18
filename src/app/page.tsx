@@ -853,7 +853,7 @@ export default function Home() {
               </p>
               <div className="flex items-center gap-4 mt-2">
                 <a
-                  href="mailto:contact@bluegenc.com"
+                  href="mailto:blueagencylampung@gmail.com"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-brand-500 hover:text-white transition-all duration-300 border border-white/10"
                 >
                   <Mail className="w-4 h-4" />
