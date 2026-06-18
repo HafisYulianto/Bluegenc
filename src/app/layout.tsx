@@ -8,14 +8,30 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bluegenc.vercel.app"),
   title: "Bluegenc | Enterprise Software Agency",
   description: "Mitra strategis Anda dalam transformasi digital. Merancang, mengembangkan, dan mengelola ekosistem teknologi masa depan.",
   openGraph: {
     title: 'Bluegenc | B2B Software Agency',
     description: 'Membangun Solusi Digital & IoT Terukur untuk Transformasi Bisnis Anda.',
     siteName: 'Bluegenc',
+    url: 'https://bluegenc.vercel.app',
     locale: 'id_ID',
     type: 'website',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Bluegenc - Enterprise Software Agency',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bluegenc | B2B Software Agency',
+    description: 'Membangun Solusi Digital & IoT Terukur untuk Transformasi Bisnis Anda.',
+    images: ['/opengraph-image.png'],
   },
 };
 
