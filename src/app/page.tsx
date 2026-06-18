@@ -297,29 +297,29 @@ export default function Home() {
         </Link>
 
         {/* Floating Nav Pill (Right Aligned) */}
-        <header className="backdrop-blur-2xl bg-[#02345d]/90 border border-white/10 rounded-full shadow-2xl shadow-[#02345d]/30 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
-          <nav className="hidden lg:flex gap-8 items-center font-medium text-slate-300">
-            <Link href="#tentang" className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
-            <Link href="#layanan" className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
-            <Link href="#portofolio" className="hover:text-white transition-colors duration-300">{t.nav.portfolio}</Link>
-            <Link href="#tim" className="hover:text-white transition-colors duration-300">{t.nav.team}</Link>
-            <Link href="#cara-kerja" className="hover:text-white transition-colors duration-300">{t.nav.workflow}</Link>
+        <header className="backdrop-blur-2xl bg-white/90 border border-slate-200/80 rounded-full shadow-xl shadow-slate-200/50 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
+          <nav className="hidden lg:flex gap-8 items-center font-medium text-slate-600">
+            <Link href="#tentang" className="hover:text-slate-900 transition-colors duration-300">{t.nav.about}</Link>
+            <Link href="#layanan" className="hover:text-slate-900 transition-colors duration-300">{t.nav.services}</Link>
+            <Link href="#portofolio" className="hover:text-slate-900 transition-colors duration-300">{t.nav.portfolio}</Link>
+            <Link href="#tim" className="hover:text-slate-900 transition-colors duration-300">{t.nav.team}</Link>
+            <Link href="#cara-kerja" className="hover:text-slate-900 transition-colors duration-300">{t.nav.workflow}</Link>
           </nav>
 
-          <div className="flex items-center gap-3 lg:border-l lg:border-white/10 lg:pl-6">
+          <div className="flex items-center gap-3 lg:border-l lg:border-slate-200 lg:pl-6">
             {/* Language Toggle */}
             <button
               onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
-              className="px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/10 text-xs md:text-sm font-bold text-white transition-colors"
+              className="px-3 py-1.5 rounded-full border border-slate-200 hover:bg-slate-50 text-xs md:text-sm font-bold text-slate-700 transition-colors"
             >
               {lang.toUpperCase()}
             </button>
-            <Link href="#kontak" className="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white rounded-full px-5 md:px-7 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 ease-in-out shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]">
+            <Link href="#kontak" className="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white rounded-full px-5 md:px-7 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 ease-in-out shadow-[0_0_20px_rgba(37,99,235,0.25)] hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]">
               {t.nav.cta}
             </Link>
             {/* Mobile Menu Toggle Button */}
             <button
-              className="lg:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors"
+              className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
               onClick={toggleMobileMenu}
               aria-label="Toggle Mobile Menu"
             >
@@ -331,13 +331,13 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#02345d]/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
-          <nav className="flex flex-col gap-8 items-center text-xl font-medium text-slate-300">
-            <Link href="#tentang" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.about}</Link>
-            <Link href="#layanan" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.services}</Link>
-            <Link href="#portofolio" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.portfolio}</Link>
-            <Link href="#tim" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.team}</Link>
-            <Link href="#cara-kerja" onClick={toggleMobileMenu} className="hover:text-white transition-colors duration-300">{t.nav.workflow}</Link>
+        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
+          <nav className="flex flex-col gap-8 items-center text-xl font-medium text-slate-600">
+            <Link href="#tentang" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.about}</Link>
+            <Link href="#layanan" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.services}</Link>
+            <Link href="#portofolio" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.portfolio}</Link>
+            <Link href="#tim" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.team}</Link>
+            <Link href="#cara-kerja" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.workflow}</Link>
             <Link href="#kontak" onClick={toggleMobileMenu} className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white rounded-full px-8 py-3 text-sm font-bold mt-4 shadow-[0_0_20px_rgba(37,99,235,0.4)]">
               {t.nav.cta}
             </Link>
