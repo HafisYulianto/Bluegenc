@@ -346,27 +346,27 @@ export default function Home() {
       )}
 
       <main>
-        {/* B. Hero Section - Dark Neutral Background */}
+        {/* B. Hero Section - Blurred Background Layout */}
         <section className="relative pt-40 pb-20 overflow-hidden bg-neutral-950 min-h-screen flex flex-col justify-center">
-          {/* Office Background Image with Dark Overlay (Original Photo Colors) */}
+          {/* Office Background Image with Blur to avoid text-logo overlap */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src="/kantor.png"
               alt="Bluegenc Office"
               fill
-              className="object-cover object-top opacity-85"
+              className="object-cover object-top opacity-60 blur-[6px]"
               priority
-              quality={75}
+              quality={80}
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-neutral-950"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-neutral-950"></div>
           </div>
-
-          {/* Subtle Ambient Glow Gradients (Neutral) */}
+          
+          {/* Subtle Ambient Glow Gradients */}
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
           <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-slate-500/5 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-screen z-0"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen z-0"></div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -388,7 +388,7 @@ export default function Home() {
               )}
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-14 font-light">
+            <p className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-14 font-light">
               {t.hero.desc}
             </p>
 
