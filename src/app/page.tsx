@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,7 +19,9 @@ import {
   LayoutDashboard,
   Menu,
   X,
-  Building2
+  Building2,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 const dict = {
@@ -230,6 +232,19 @@ export default function Home() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeWorkflowStep, setActiveWorkflowStep] = useState(0);
+  const portfolioScrollRef = useRef<HTMLDivElement>(null);
+
+  const slideLeft = () => {
+    if (portfolioScrollRef.current) {
+      portfolioScrollRef.current.scrollBy({ left: -380, behavior: 'smooth' });
+    }
+  };
+
+  const slideRight = () => {
+    if (portfolioScrollRef.current) {
+      portfolioScrollRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+    }
+  };
 
   const t = dict[lang];
   const portfolios = portfolioDataTranslations[lang];
@@ -346,25 +361,25 @@ export default function Home() {
       )}
 
       <main>
-        {/* B. Hero Section - Blurred Background Layout */}
-        <section className="relative pt-40 pb-20 overflow-hidden bg-neutral-950 min-h-screen flex flex-col justify-center">
+        {/* B. Hero Section - Blurred Navy Background Layout */}
+        <section className="relative pt-40 pb-20 overflow-hidden bg-[#0d2047] min-h-screen flex flex-col justify-center">
           {/* Office Background Image with Blur to avoid text-logo overlap */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src="/kantor.png"
               alt="Bluegenc Office"
               fill
-              className="object-cover object-top opacity-60 blur-[6px]"
+              className="object-cover object-top opacity-55 blur-[6px]"
               priority
               quality={80}
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-neutral-950"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0d2047]/60 via-[#0d2047]/80 to-[#0d2047]"></div>
           </div>
           
           {/* Subtle Ambient Glow Gradients */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
-          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-slate-500/5 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/10 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen z-0"></div>
 
@@ -531,51 +546,38 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* Auto-scroll Portfolio Slider with pause on hover */}
-            <div className="relative overflow-hidden mt-4">
+            {/* Portfolio Slider with Manual Navigation */}
+            <div className="relative mt-4 group/slider">
               {/* Left fade gradient */}
               <div className="absolute left-0 top-0 h-full w-20 md:w-32 bg-gradient-to-r from-[#0d2047] to-transparent z-10 pointer-events-none" />
               {/* Right fade gradient */}
               <div className="absolute right-0 top-0 h-full w-20 md:w-32 bg-gradient-to-l from-[#0d2047] to-transparent z-10 pointer-events-none" />
 
-              {/* Scrolling Track — duplicate items for seamless infinite loop */}
-              <div className="flex gap-4 md:gap-6 pb-6 pt-4 animate-scroll hover:[animation-play-state:paused] w-max">
-                {/* First set */}
+              {/* Left Chevron Button */}
+              <button
+                onClick={slideLeft}
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 flex items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
+                aria-label="Slide Left"
+              >
+                <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+              </button>
+
+              {/* Right Chevron Button */}
+              <button
+                onClick={slideRight}
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/25 flex items-center justify-center text-white transition-all backdrop-blur-md active:scale-95 shadow-lg shadow-black/25 opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 duration-300 pointer-events-auto cursor-pointer"
+                aria-label="Slide Right"
+              >
+                <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+              </button>
+
+              {/* Scrollable Track */}
+              <div
+                ref={portfolioScrollRef}
+                className="flex gap-4 md:gap-6 pb-6 pt-4 overflow-x-auto scroll-smooth hide-scrollbar w-full px-6 md:px-20 relative z-0"
+              >
                 {portfolios.map((item) => (
-                  <article key={`a-${item.id}`} className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
-                    <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0" />
-                    <div className="w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10">
-                      {(item as any).image ? (
-                        <Image
-                          src={(item as any).image}
-                          alt={item.title}
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
-                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 360px, 380px"
-                          quality={80}
-                        />
-                      ) : (
-                        <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-transparent to-transparent opacity-80 z-20 pointer-events-none" />
-                    </div>
-                    <div className="p-6 md:p-7 flex flex-col flex-1 relative z-10">
-                      <div className="flex flex-wrap gap-2 mb-5">
-                        {item.tags.map((tag, i) => (
-                          <span key={i} className="bg-brand-500/10 border border-brand-400/20 text-brand-300 text-[10px] md:text-xs px-2.5 py-1 rounded-lg font-semibold tracking-wide">{tag}</span>
-                        ))}
-                      </div>
-                      <h3 className="font-bold text-xl md:text-2xl text-white mb-2">{item.title}</h3>
-                      <p className="text-sm text-slate-400 leading-relaxed mb-6 flex-1">{item.desc}</p>
-                      <Link href={item.demo} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-300 font-bold text-sm flex items-center gap-2 transition-colors duration-300 w-fit">
-                        {t.portfolio.visit} <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
-                  </article>
-                ))}
-                {/* Duplicate set for seamless loop */}
-                {portfolios.map((item) => (
-                  <article key={`b-${item.id}`} aria-hidden="true" className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
+                  <article key={item.id} className="w-[85vw] sm:w-[320px] md:w-[360px] lg:w-[380px] shrink-0 group relative rounded-[2rem] bg-[#0a1526] border border-white/10 overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_0_40px_rgba(11,132,235,0.15)] hover:border-brand-500/40">
                     <div className="absolute inset-0 bg-gradient-to-b from-brand-500/0 to-brand-500/0 group-hover:from-brand-500/10 group-hover:to-transparent transition-all duration-500 z-0" />
                     <div className="w-full bg-[#0d1e36] flex items-center justify-center relative overflow-hidden transition-colors duration-500 aspect-video z-10">
                       {(item as any).image ? (
