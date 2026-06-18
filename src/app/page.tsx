@@ -136,8 +136,7 @@ const dict = {
       s3_title: "Smart IoT Solutions",
       s3_desc: "Hardware integration, real-time dashboards, and advanced aerial robotics telemetry.",
       s4_title: "Enterprise Mobile Apps",
-      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android.",
-      s4_cta: "Request Demo"
+      s4_desc: "Access, control, and monitoring of operational systems directly in the palm of your hand, supporting iOS & Android."
     },
     portfolio: {
       title: "Projects",
