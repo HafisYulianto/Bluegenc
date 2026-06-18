@@ -9,16 +9,23 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-jakarta);
-  --color-brand-50: #f0f7ff;
-  --color-brand-100: #e0effe;
-  --color-brand-200: #b9ddfe;
-  --color-brand-300: #7cc1fd;
-  --color-brand-400: #36a1fa;
-  --color-brand-500: #0b84eb;
-  --color-brand-600: #0d3a66; /* Main Logo Color */
-  --color-brand-700: #0a2d52; /* Logo Color Hover */
-  --color-brand-800: #08213e;
-  --color-brand-900: #051629;
+
+  /* Navy + White Brand Palette */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #3b82f6;
+  --color-brand-500: #2563eb;   /* Main CTA Blue */
+  --color-brand-600: #1d4ed8;   /* Deep Blue */
+  --color-brand-700: #1e3a8a;   /* Navy Blue */
+  --color-brand-800: #172554;   /* Deep Navy */
+  --color-brand-900: #0d1e45;   /* Darkest Navy */
+
+  /* Navy section backgrounds */
+  --color-navy-950: #070f24;
+  --color-navy-900: #0d2047;
+  --color-navy-800: #122a5e;
 
   --animate-scroll: scroll 35s linear infinite;
 
