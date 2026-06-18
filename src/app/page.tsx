@@ -294,6 +294,7 @@ export default function Home() {
             height={100}
             className="h-24 md:h-36 w-auto object-contain origin-left hover:scale-[1.05] transition-transform duration-300 ease-out"
             priority
+            quality={85}
           />
         </Link>
 
@@ -357,6 +358,8 @@ export default function Home() {
               fill
               className="object-cover object-top opacity-60"
               priority
+              quality={70}
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#030b14]/30 via-[#030b14]/60 to-[#030b14]"></div>
           </div>
@@ -549,6 +552,8 @@ export default function Home() {
                         alt={item.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
+                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 360px, 380px"
+                        quality={80}
                       />
                     ) : (
                       <Code2 className="text-brand-900 w-16 h-16 group-hover:scale-110 group-hover:text-brand-700 transition-transform duration-700 ease-out relative z-10" />
@@ -625,6 +630,8 @@ export default function Home() {
                       alt={member.name}
                       fill
                       className="object-cover object-center grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 ease-out"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 20vw"
+                      quality={80}
                     />
                     {/* Bottom Gradient Fade */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526] via-[#0a1526]/80 to-transparent opacity-90 z-10 h-full pointer-events-none"></div>
@@ -848,6 +855,7 @@ export default function Home() {
                 width={200}
                 height={80}
                 className="h-16 w-auto object-contain origin-left"
+                quality={85}
               />
               <p className="text-slate-400 text-sm leading-relaxed">
                 {t.footer.brandDesc}
