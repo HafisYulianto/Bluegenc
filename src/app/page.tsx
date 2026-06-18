@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -250,6 +250,38 @@ export default function Home() {
   const portfolios = portfolioDataTranslations[lang];
   const teams = teamDataTranslations[lang];
 
+  const [navTheme, setNavTheme] = useState<'white' | 'navy'>('white');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = ['tentang', 'layanan', 'portofolio', 'tim', 'cara-kerja', 'kontak', 'mitra', 'footer'];
+      const scrollPosition = window.scrollY + 80;
+
+      let activeTheme: 'white' | 'navy' = 'white';
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            if (id === 'tentang' || id === 'layanan' || id === 'cara-kerja' || id === 'mitra') {
+              activeTheme = 'navy';
+            } else if (id === 'portofolio' || id === 'tim' || id === 'kontak' || id === 'footer') {
+              activeTheme = 'white';
+            }
+          }
+        }
+      }
+
+      setNavTheme(activeTheme);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -312,20 +344,32 @@ export default function Home() {
         </Link>
 
         {/* Floating Nav Pill (Right Aligned) */}
-        <header className="backdrop-blur-2xl bg-white/90 border border-slate-200/80 rounded-full shadow-xl shadow-slate-200/50 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0">
-          <nav className="hidden lg:flex gap-8 items-center font-medium text-slate-600">
-            <Link href="#tentang" className="hover:text-slate-900 transition-colors duration-300">{t.nav.about}</Link>
-            <Link href="#layanan" className="hover:text-slate-900 transition-colors duration-300">{t.nav.services}</Link>
-            <Link href="#portofolio" className="hover:text-slate-900 transition-colors duration-300">{t.nav.portfolio}</Link>
-            <Link href="#tim" className="hover:text-slate-900 transition-colors duration-300">{t.nav.team}</Link>
-            <Link href="#cara-kerja" className="hover:text-slate-900 transition-colors duration-300">{t.nav.workflow}</Link>
+        <header className={`backdrop-blur-2xl rounded-full shadow-xl transition-all duration-500 px-4 md:px-6 h-14 md:h-16 flex items-center gap-6 pointer-events-auto shrink-0 ${
+          navTheme === 'white'
+            ? 'bg-white/90 border border-slate-200/80 shadow-slate-200/50'
+            : 'bg-[#02345d]/90 border border-white/10 shadow-[#02345d]/30'
+        }`}>
+          <nav className={`hidden lg:flex gap-8 items-center font-medium transition-colors duration-500 ${
+            navTheme === 'white' ? 'text-slate-600' : 'text-slate-300'
+          }`}>
+            <Link href="#tentang" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.about}</Link>
+            <Link href="#layanan" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.services}</Link>
+            <Link href="#portofolio" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.portfolio}</Link>
+            <Link href="#tim" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.team}</Link>
+            <Link href="#cara-kerja" className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.workflow}</Link>
           </nav>
 
-          <div className="flex items-center gap-3 lg:border-l lg:border-slate-200 lg:pl-6">
+          <div className={`flex items-center gap-3 lg:border-l lg:pl-6 transition-colors duration-500 ${
+            navTheme === 'white' ? 'lg:border-slate-200' : 'lg:border-white/10'
+          }`}>
             {/* Language Toggle */}
             <button
               onClick={() => setLang(lang === 'id' ? 'en' : 'id')}
-              className="px-3 py-1.5 rounded-full border border-slate-200 hover:bg-slate-50 text-xs md:text-sm font-bold text-slate-700 transition-colors"
+              className={`px-3 py-1.5 rounded-full border text-xs md:text-sm font-bold transition-all duration-300 ${
+                navTheme === 'white'
+                  ? 'border-slate-200 hover:bg-slate-50 text-slate-700'
+                  : 'border-white/20 hover:bg-white/10 text-white'
+              }`}
             >
               {lang.toUpperCase()}
             </button>
@@ -334,7 +378,11 @@ export default function Home() {
             </Link>
             {/* Mobile Menu Toggle Button */}
             <button
-              className="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
+              className={`lg:hidden p-2 rounded-full transition-all duration-300 ${
+                navTheme === 'white'
+                  ? 'text-slate-700 hover:bg-slate-100'
+                  : 'text-white hover:bg-white/10'
+              }`}
               onClick={toggleMobileMenu}
               aria-label="Toggle Mobile Menu"
             >
@@ -346,13 +394,17 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white/98 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto">
-          <nav className="flex flex-col gap-8 items-center text-xl font-medium text-slate-600">
-            <Link href="#tentang" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.about}</Link>
-            <Link href="#layanan" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.services}</Link>
-            <Link href="#portofolio" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.portfolio}</Link>
-            <Link href="#tim" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.team}</Link>
-            <Link href="#cara-kerja" onClick={toggleMobileMenu} className="hover:text-slate-900 transition-colors duration-300">{t.nav.workflow}</Link>
+        <div className={`fixed inset-0 z-40 backdrop-blur-xl lg:hidden flex flex-col items-center justify-center pointer-events-auto transition-colors duration-500 ${
+          navTheme === 'white' ? 'bg-white/98' : 'bg-[#02345d]/98'
+        }`}>
+          <nav className={`flex flex-col gap-8 items-center text-xl font-medium transition-colors duration-500 ${
+            navTheme === 'white' ? 'text-slate-600' : 'text-slate-300'
+          }`}>
+            <Link href="#tentang" onClick={toggleMobileMenu} className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.about}</Link>
+            <Link href="#layanan" onClick={toggleMobileMenu} className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.services}</Link>
+            <Link href="#portofolio" onClick={toggleMobileMenu} className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.portfolio}</Link>
+            <Link href="#tim" onClick={toggleMobileMenu} className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.team}</Link>
+            <Link href="#cara-kerja" onClick={toggleMobileMenu} className={`transition-colors duration-300 ${navTheme === 'white' ? 'hover:text-slate-900' : 'hover:text-white'}`}>{t.nav.workflow}</Link>
             <Link href="#kontak" onClick={toggleMobileMenu} className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white rounded-full px-8 py-3 text-sm font-bold mt-4 shadow-[0_0_20px_rgba(37,99,235,0.4)]">
               {t.nav.cta}
             </Link>
@@ -361,25 +413,25 @@ export default function Home() {
       )}
 
       <main>
-        {/* B. Hero Section - Blurred Navy Background Layout */}
-        <section className="relative pt-40 pb-20 overflow-hidden bg-[#0d2047] min-h-screen flex flex-col justify-center">
-          {/* Office Background Image with Blur to avoid text-logo overlap */}
+        {/* B. Hero Section - Sharp Background Layout (Top Aligned Text) */}
+        <section className="relative pt-44 lg:pt-52 pb-20 overflow-hidden bg-neutral-950 min-h-screen flex flex-col justify-start">
+          {/* Office Background Image (Sharp, original colors) */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src="/kantor.png"
               alt="Bluegenc Office"
               fill
-              className="object-cover object-top opacity-55 blur-[6px]"
+              className="object-cover object-top opacity-80"
               priority
               quality={80}
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0d2047]/60 via-[#0d2047]/80 to-[#0d2047]"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-neutral-950"></div>
           </div>
           
           {/* Subtle Ambient Glow Gradients */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-500/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
-          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-brand-400/10 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none z-0"></div>
+          <div className="absolute bottom-0 left-1/2 w-[1000px] h-[500px] bg-slate-500/5 rounded-full blur-[150px] -translate-x-1/2 translate-y-1/2 pointer-events-none z-0"></div>
 
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] mix-blend-screen z-0"></div>
 
@@ -387,7 +439,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 flex flex-col justify-center items-center text-center max-w-5xl mx-auto px-4 -mt-4 md:-mt-12"
+            className="relative z-10 flex flex-col justify-start items-center text-center max-w-5xl mx-auto px-4"
           >
             <div className="rounded-full bg-brand-900/50 backdrop-blur-md text-brand-300 border border-brand-500/30 px-6 py-2 text-sm font-semibold mb-8 shadow-[0_0_20px_rgba(11,132,235,0.15)] inline-flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-brand-400" /> {t.hero.badge}
@@ -813,7 +865,7 @@ export default function Home() {
         </section>
 
       {/* H. Partners Section - White */}
-      <section className="py-20 md:py-32 border-t border-slate-100 bg-white relative flex flex-col items-center px-4">
+      <section id="mitra" className="py-20 md:py-32 border-t border-slate-100 bg-white relative flex flex-col items-center px-4">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -857,7 +909,7 @@ export default function Home() {
       </main>
 
       {/* I. Premium Enterprise Footer */}
-      <footer className="pt-20 pb-10 bg-[#0a1d3f] border-t border-white/10 relative overflow-hidden">
+      <footer id="footer" className="pt-20 pb-10 bg-[#0a1d3f] border-t border-white/10 relative overflow-hidden">
         {/* Abstract Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
